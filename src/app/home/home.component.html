@@ -7,5 +7,10 @@
         <label for="file">Choose File:</label>
         <input type="file" id="file" (change)="handleFileInput($event.target.files)">
     </div>
+    
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
     <router-outlet></router-outlet>
 </main>
