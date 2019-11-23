@@ -2,8 +2,8 @@
 <header>
     <img src="../assets/logo.png" id="logo">
     <ul id="navigation">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
     </ul>
 </header>
 </template>
