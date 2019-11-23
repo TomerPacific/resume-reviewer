@@ -4,6 +4,7 @@
     <ul id="navigation">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/about">About</router-link></li>
+        <li><router-link to="/file">Upload File</router-link></li>
     </ul>
 </header>
 </template>

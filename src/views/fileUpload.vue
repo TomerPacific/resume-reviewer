@@ -1,5 +1,6 @@
 <template>
     <main>
+        <h1>Upload Your Resume</h1>
         <div class="form-group">
             <label for="file">Choose File:</label>
             <input type="file" id="file" v-on:change="uploadFile">
@@ -44,10 +45,16 @@ export default {
 <style>
     * {
     text-align: center;
+    color: white;
+    }
+
+    h1 {
+        margin-top: 2%;
     }
 
     .form-group {
         margin-top: 10%;
+        
     }
 
     #file {
