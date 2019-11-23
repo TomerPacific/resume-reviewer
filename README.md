@@ -1,4 +1,4 @@
-# vue-firebase
+# Resume Reviewer
 
 ## Project setup
 ```
