@@ -13,7 +13,7 @@
 import firebase from 'firebase';
 export default {
     
-    name: 'Content',
+    name: 'FileUpload',
     data: function(){
         return {
             fileToUpload: null,
