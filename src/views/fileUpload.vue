@@ -6,6 +6,7 @@
             <input type="file" id="file" v-on:change="uploadFile">
         </div>
         <p v-if="isUploading">Progress: {{uploadValue.toFixed()+"%"}}</p>
+        <p v-if="uploadValue === 100"><i class="fas fa-check"></i></p>
     </main>
 </template>
 
@@ -34,6 +35,7 @@ export default {
                 this.isUploading = false;
             }, () => {
                 this.uploadValue = 100;
+                isUploading = false;
             });
         }
     }
