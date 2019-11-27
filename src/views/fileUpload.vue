@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <div id="container">
         <h1>Upload Your Resume</h1>
         <div class="form-group">
             <label for="file">Choose File:</label>
@@ -7,7 +7,7 @@
         </div>
         <p v-if="isUploading">Progress: {{uploadValue.toFixed()+"%"}}</p>
         <p v-if="uploadValue === 100"><i class="fas fa-check"></i></p>
-    </main>
+    </div>
 </template>
 
 
@@ -35,7 +35,7 @@ export default {
                 this.isUploading = false;
             }, () => {
                 this.uploadValue = 100;
-                isUploading = false;
+                this.isUploading = false;
             });
         }
     }
@@ -44,10 +44,12 @@ export default {
 </script>
 
 
-<style>
-    * {
-    text-align: center;
-    color: white;
+<style scoped>
+
+    #container {
+        min-height: 100%;
+        margin-bottom: -50px;
+        color: white;
     }
 
     h1 {
