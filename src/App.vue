@@ -4,20 +4,20 @@
     <main>
       <router-view/>
     </main>
-    <Footer></Footer>
+    <footer>
+       <p>Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400;</p>
+    </footer>
   </div>
 
 </template>
 
 <script>
  import AppNav from './components/AppNav.vue'
- import Footer from './components/Footer.vue'
 
  export default {
      name: 'app',
      components:{
-        AppNav,
-        Footer
+        AppNav
      }
  }
 </script>
@@ -33,10 +33,21 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  display: flex;
-  flex-direction: column;
-  height: 100%
+  /*color: #2c3e50; */
+}
+
+footer{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        color: white;
+        text-align: center;
+    }
+
+footer a:hover {
+  color: #0088A9;
 }
 
 </style>
