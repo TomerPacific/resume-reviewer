@@ -8,14 +8,14 @@
     <p>We do the following:</p>
 
     <div>
-      <ul id="points">
+      <ol id="points">
         <li>Reviewing Your Resume</li>
         <li>Pre Interview Training</li>
-        <li>Bheavioral Questions</li>
+        <li>Behavioral Questions</li>
         <li>Culture Fit Preperation</li>
         <li>Whiteboard Practice</li>
         <li>Pair Programming Exercises</li>
-      </ul>
+      </ol>
     </div>
   </div>
   
@@ -49,8 +49,13 @@ export default {
   }
 
   #points {
-    list-style: none;
-    margin-top: 3%;
+    list-style-type: upper-roman;
+    list-style-position: inside;
+    margin-top: 2%;
+  }
+
+  #points li::before {
+    color: red;
   }
 
   #points li {
