@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <p>Welcome To Resume Reviewer! Your one-stop-shop for all everything that you need to prepare yourself for a job interview</p>
+    <img id="interview" src="../assets/interview.jpg" alt="interview" title="Photo by Rachel Danner on Unsplash">
+    <p>Welcome To Resume Reviewer! <br>
+      Your one-stop-shop for all everything that you need to prepare yourself for a job interview</p>
   </div>
 </template>
 
@@ -21,6 +23,13 @@ export default {
   }
 
   .home {
-    margin-top: 10%;
+    margin-top: 5%;
+    height: 100%;
+  }
+
+  #interview {
+    height: 30%;
+    width: 30%;
+    float: left;
   }
 </style>
