@@ -12,6 +12,10 @@
         </div>
         <p v-if="isUploading">Progress: {{uploadValue.toFixed()+"%"}}</p>
         <p v-if="uploadValue === 100"><i class="fas fa-check"></i></p>
+        <p v-if="uploadValue === 100" id="afterSubmission">
+            Thank you for your submission.<br>
+            We will contact you within 2-3 business days
+        </p>
     </div>
 </template>
 
