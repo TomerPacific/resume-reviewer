@@ -46,6 +46,11 @@ export default {
     height: 30%;
     width: 30%;
     float: left;
+    border: 2px solid white;
+  }
+
+  #interview:hover {
+    border: 2px solid #0088A9;
   }
 
   #points {
