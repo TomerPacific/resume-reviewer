@@ -11,7 +11,8 @@
             <input type="file" id="file" v-on:change="uploadFile">
         </div>
         <p v-if="isUploading">Progress: {{uploadValue.toFixed()+"%"}}</p>
-        <p v-if="uploadValue === 100"><i class="fas fa-check"></i></p>
+        <p v-if="uploadValue === 100"><i class="fas fa-check fa-3x success"></i></p>
+        <p v-if="hasError"><i class="fas fa-times fa-3x error"></i></p>
         <p v-if="hasError" id="errorParagraph">
             {{ errorMessage }}
         </p>
@@ -73,6 +74,7 @@ export default {
         },
         uploadFile(event) {
             this.hasError = false;
+            this.uploadValue = 0;
             this.fileToUpload = event.target.files[0];
             if (this.isFileValid()) {
                 this.beginUploadingFile();
@@ -111,6 +113,14 @@ export default {
 
     #file {
         margin: 1%;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .error {
+        color: red;
     }
   
 
