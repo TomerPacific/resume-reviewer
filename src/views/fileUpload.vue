@@ -11,8 +11,8 @@
             <input type="file" id="file" v-on:change="uploadFile">
         </div>
         <p v-if="isUploading">Progress: {{uploadValue.toFixed()+"%"}}</p>
-        <p v-if="uploadValue === 100"><i class="fas fa-check fa-3x success"></i></p>
-        <p v-if="hasError"><i class="fas fa-times fa-3x error"></i></p>
+        <p v-if="!isUploading && uploadValue === 100"><i class="fas fa-check fa-3x success"></i></p>
+        <p v-if="hasError" :key="hasError"><i class="fas fa-times fa-3x error"></i></p>
         <p v-if="hasError" id="errorParagraph">
             {{ errorMessage }}
         </p>
@@ -44,14 +44,14 @@ export default {
         }
     },
     methods: {
-        isFileValid() {
+        isFileValid: function() {
             let fileType = this.fileToUpload && this.fileToUpload.type;
             return ((fileType === PDF_FILE_MIME_TYPE || 
                     fileType === MSWORD_DOC_FILE_MIME_TYPE || 
                     fileType === MSWORD_DOCX_FILE_MIME_TYPE) && 
                     this.fileToUpload.size < MAXIMUM_FILE_SIZE_IN_BYTES);
         },
-        beginUploadingFile() {
+        beginUploadingFile: function() {
             this.isUploading = true;
             const storageRef = firebase.storage().ref(`${this.fileToUpload.name}`).put(this.fileToUpload);
             storageRef.on(`state_changed`, snapshot => {
@@ -72,7 +72,7 @@ export default {
             });
 
         },
-        uploadFile(event) {
+        uploadFile: function(event) {
             this.hasError = false;
             this.uploadValue = 0;
             this.fileToUpload = event.target.files[0];
@@ -94,8 +94,8 @@ export default {
 
     #container {
         min-height: 100%;
-        margin-bottom: -50px;
         color: white;
+        text-align: center;
     }
 
     h1 {
@@ -108,7 +108,6 @@ export default {
 
     .form-group {
         margin-top: 5%;
-        
     }
 
     #file {
