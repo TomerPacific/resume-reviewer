@@ -1,6 +1,11 @@
 <template>
     <div id="container">
         <h1>Upload Your Resume</h1>
+        <div id="explanation">
+            <p>In order to start the reviewing process, it is needed to submit your resume.<br>
+               We accept all file formats, but would prefer a PDF or Word document. 
+            </p>
+        </div>
         <div class="form-group">
             <label for="file">Choose File:</label>
             <input type="file" id="file" v-on:change="uploadFile">
@@ -56,8 +61,12 @@ export default {
         margin-top: 2%;
     }
 
+    #explanation {
+        margin-top: 1%;
+    }
+
     .form-group {
-        margin-top: 10%;
+        margin-top: 5%;
         
     }
 
