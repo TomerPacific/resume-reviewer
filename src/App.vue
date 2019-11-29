@@ -5,7 +5,7 @@
       <router-view/>
     </main>
     <footer>
-       <p>Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400;</p>
+       <p>Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400; &nbsp; 2019</p>
     </footer>
   </div>
 
