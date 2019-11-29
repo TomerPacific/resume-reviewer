@@ -3,7 +3,7 @@
         <h1>Upload Your Resume</h1>
         <div id="explanation">
             <p>In order to start the reviewing process, it is needed to submit your resume.<br>
-               We accept all file formats, but would prefer a PDF or Word document. 
+               We accept <strong>PDF</strong> files or Word documents (<strong>.doc, .docx</strong>). 
             </p>
         </div>
         <div class="form-group">
@@ -12,6 +12,9 @@
         </div>
         <p v-if="isUploading">Progress: {{uploadValue.toFixed()+"%"}}</p>
         <p v-if="uploadValue === 100"><i class="fas fa-check"></i></p>
+        <p v-if="hasError" id="errorParagraph">
+            {{ errorMessage }}
+        </p>
         <p v-if="uploadValue === 100" id="afterSubmission">
             Thank you for your submission.<br>
             We will contact you within 2-3 business days
@@ -30,6 +33,8 @@ export default {
             fileToUpload: null,
             isUploading: false,
             uploadValue: 0,
+            hasError: false,
+            errorMessage: "",
         }
     },
     methods: {
@@ -40,8 +45,15 @@ export default {
             storageRef.on(`state_changed`, snapshot => {
                 this.uploadValue = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
             }, error => {
-                console.log(error.message);
+                switch(error.code) {
+                    case 'storage/unauthorized':
+                        this.errorMessage = 'You have uploaded a wrong file type.';
+                        break;
+                    default:
+                        this.errorMessage = 'An error has occurred while uploading the file. Please try again.';
+                }
                 this.isUploading = false;
+                this.hasError = true;
             }, () => {
                 this.uploadValue = 100;
                 this.isUploading = false;
