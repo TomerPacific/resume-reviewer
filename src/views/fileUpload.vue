@@ -24,6 +24,11 @@
 
 
 <script>
+const PDF_FILE_MIME_TYPE = 'application/pdf';
+const MSWORD_DOC_FILE_MIME_TYPE = 'application/msword';
+const MSWORD_DOCX_FILE_MIME_TYPE = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+const MAXIMUM_FILE_SIZE_IN_BYTES = 5000000;
+
 import firebase from 'firebase';
 export default {
     
@@ -38,8 +43,14 @@ export default {
         }
     },
     methods: {
-        uploadFile(event) {
-            this.fileToUpload = event.target.files[0];
+        isFileValid() {
+            let fileType = this.fileToUpload && this.fileToUpload.type;
+            return ((fileType === PDF_FILE_MIME_TYPE || 
+                    fileType === MSWORD_DOC_FILE_MIME_TYPE || 
+                    fileType === MSWORD_DOCX_FILE_MIME_TYPE) && 
+                    this.fileToUpload.size < MAXIMUM_FILE_SIZE_IN_BYTES);
+        },
+        beginUploadingFile() {
             this.isUploading = true;
             const storageRef = firebase.storage().ref(`${this.fileToUpload.name}`).put(this.fileToUpload);
             storageRef.on(`state_changed`, snapshot => {
@@ -58,9 +69,21 @@ export default {
                 this.uploadValue = 100;
                 this.isUploading = false;
             });
+
+        },
+        uploadFile(event) {
+            this.hasError = false;
+            this.fileToUpload = event.target.files[0];
+            if (this.isFileValid()) {
+                this.beginUploadingFile();
+            } else {
+                this.hasError = true;
+                this.errorMessage = 'You have uploaded a wrong file type.';
+            }
         }
     }
 }
+
 
 </script>
 
