@@ -9,12 +9,7 @@
 
     <div>
       <ol id="points">
-        <li>Reviewing Your Resume</li>
-        <li>Pre Interview Training</li>
-        <li>Behavioral Questions</li>
-        <li>Culture Fit Preperation</li>
-        <li>Whiteboard Practice</li>
-        <li>Pair Programming Exercises</li>
+        <li v-for="point in points" :key="point"> {{ point }} </li>
       </ol>
     </div>
   </div>
@@ -25,6 +20,18 @@
 
 export default {
   name: 'home',
+  data: function(){
+    return {
+      points: [
+        "Reviewing Your Resume",
+        "Pre Interview Training",
+        "Behavioral Questions",
+        "Culture Fit Preperation",
+        "Whiteboard Practice",
+        "Pair Programming Exercises"
+      ],
+    }
+  },
   components: {
     
   }
