@@ -47,11 +47,12 @@ export default {
   .home {
     margin-top: 5%;
     height: 100%;
+    font-size: 1.5rem;
   }
 
   #interview {
-    height: 30%;
-    width: 30%;
+    height: 35%;
+    width: 35%;
     float: left;
     border: 2px solid white;
   }
@@ -72,6 +73,7 @@ export default {
 
   #points li {
     margin-bottom: 1%;
+    font-size: 1.5rem;
   }
 
   #points li:hover {
