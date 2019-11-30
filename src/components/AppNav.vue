@@ -6,6 +6,13 @@
         <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/file">Upload Resume</router-link></li>
     </ul>
+    <div id="login">
+      <form>
+        <i class="fas fa-user"></i><input type="text" value="" placeholder="Username"> <br>
+        <i class="fas fa-key"></i><input type="password" value="" placeholder="Password">
+        <input type="submit" value="Submit" id="submit_btn">
+      </form>
+    </div>
 </header>
 </template>
 
@@ -61,6 +68,25 @@
   #logo {
     width: 50px;
     height: 50px;
+  }
+
+  #login {
+    color: white;
+  }
+
+  #login form input {
+    display: inline-block;
+    color: white;
+    margin-bottom: 2%;
+  }
+
+  ::-webkit-input-placeholder, :-ms-input-placeholder, ::-moz-placeholder, ::placeholder {
+    color: white;
+  }
+
+  #submit_btn {
+    position: absolute;
+    right: 5;
   }
 
 </style>
