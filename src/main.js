@@ -2,10 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import firebase from 'firebase'
 import router from './router'
+import Vuex from 'vuex';
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 
 Vue.config.productionTip = false
+
+Vue.use(Vuex);
 
 const firebaseConfig = {
     apiKey: process.env.VUE_APP_FIREBASE_KEY,
