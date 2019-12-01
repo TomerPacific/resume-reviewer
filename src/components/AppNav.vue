@@ -34,7 +34,7 @@
 
   li,a {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 20px;
     color: #EDF0F1;
     text-decoration: none;
   }
