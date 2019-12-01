@@ -3,6 +3,7 @@ import App from './App.vue'
 import firebase from 'firebase'
 import router from './router'
 import Vuex from 'vuex';
+import { store } from './store';
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 
@@ -24,5 +25,6 @@ firebase.initializeApp(firebaseConfig);
 
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  store,
 }).$mount('#app')

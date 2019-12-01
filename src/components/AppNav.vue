@@ -6,7 +6,7 @@
         <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/file">Upload Resume</router-link></li>
     </ul>
-    <div id="login">
+    <div id="login" v-if="!isUserLoggedIn">
       <form>
         <i class="fas fa-user"></i><input type="text" value="" placeholder="Username"> <br>
         <i class="fas fa-key"></i><input type="password" value="" placeholder="Password">
@@ -19,6 +19,14 @@
 
 <script>
 
+export default {
+  name: 'AppNav',
+  computed: {
+    isUserLoggedIn() {
+      return this.$store.getters.isUserLoggedIn;
+    }
+  }
+}
 
 </script>
 
