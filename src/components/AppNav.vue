@@ -13,6 +13,9 @@
         <input type="submit" value="Submit" id="submit_btn">
       </form>
     </div>
+    <div id="logut" v-else>
+      <button id="logout_btn" v-on:click="logoutUser">Logout</button>
+    </div>
 </header>
 </template>
 
@@ -21,6 +24,11 @@
 
 export default {
   name: 'AppNav',
+  methods : {
+    logoutUser() {
+      this.$store.dispatch('logoutUser');
+    }
+  },
   computed: {
     isUserLoggedIn() {
       return this.$store.getters.isUserLoggedIn;
@@ -95,6 +103,11 @@ export default {
   #submit_btn {
     position: absolute;
     right: 5;
+  }
+
+  #logout_btn {
+    color: white;
+    width: 55px;
   }
 
 </style>
