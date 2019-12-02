@@ -11,6 +11,16 @@ export const store = new Vuex.Store({
         isUserLoggedIn(state) {
             return state.userLoggedIn;
         }
+    },
+    mutations: {
+        userLoggedOut(state) {
+            state.userLoggedIn = false;
+        }
+    },
+    actions: {
+        logoutUser( {commit}, event) {
+            commit('userLoggedOut', event);
+        }
     }
 });
 
