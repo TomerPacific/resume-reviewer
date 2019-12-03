@@ -7,9 +7,9 @@
         <li><router-link to="/file">Upload Resume</router-link></li>
     </ul>
     <div id="login" v-if="!isUserLoggedIn">
-      <form>
-        <i class="fas fa-user"></i><input type="text" value="" placeholder="Username"> <br>
-        <i class="fas fa-key"></i><input type="password" value="" placeholder="Password">
+      <form @submit="checkForm" action="" method="">
+        <i class="fas fa-user"></i><input id="username" type="text" value="" placeholder="Username" v-model="username"> <br>
+        <i class="fas fa-key"></i><input id="password" type="password" value="" placeholder="Password" v-model="password">
         <input type="submit" value="Submit" id="submit_btn">
       </form>
     </div>
@@ -24,9 +24,39 @@
 
 export default {
   name: 'AppNav',
+  data: function() {
+    return {
+        username: null,
+        password: null,
+    }
+  },
   methods : {
     logoutUser() {
       this.$store.dispatch('logoutUser');
+    },
+    checkForm: function(e) {
+
+      let usernameInput = document.getElementById("username");
+      let passwordInput = document.getElementById("password");
+
+      usernameInput.classList.remove("missing_input");
+      passwordInput.classList.remove("missing_input");
+
+      if (this.username && this.password) {
+        
+        return true;
+      }
+
+     
+      
+      if (!this.username) {
+        usernameInput.classList.add("missing_input");
+      }
+      if (!this.password) {
+         passwordInput.classList.add("missing_input");
+      }
+
+      e.preventDefault();
     }
   },
   computed: {
@@ -108,6 +138,10 @@ export default {
   #logout_btn {
     color: white;
     width: 55px;
+  }
+
+  .missing_input {
+    border: 2px solid red;
   }
 
 </style>
