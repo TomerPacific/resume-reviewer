@@ -72,11 +72,18 @@ export default {
             });
 
         },
+        isUserLoggedIn: function() {
+            return this.$store.getters.isUserLoggedIn;
+        },
         uploadFile: function(event) {
             this.hasError = false;
             this.uploadValue = 0;
             this.fileToUpload = event.target.files[0];
-            if (this.isFileValid()) {
+            if (!this.isUserLoggedIn()) {
+                this.hasError = true;
+                this.errorMessage = 'Please login/register to upload your resume';
+            }
+            else if (this.isFileValid()) {
                 this.beginUploadingFile();
             } else {
                 this.hasError = true;
