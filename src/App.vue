@@ -6,6 +6,10 @@
     </main>
     <footer>
        <p>Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400; &nbsp; 2019</p>
+        <p>
+          <a href="#" @click="changeLanguage('Hebrew')">Hebrew </a> |
+          <a href="#" @click="changeLanguage('English')"> English</a>
+        </p>
     </footer>
   </div>
 
@@ -18,6 +22,11 @@
      name: 'app',
      components:{
         AppNav
+     },
+     methods: {
+       changeLanguage: function(language) {
+         
+       }
      }
  }
 </script>
