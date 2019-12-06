@@ -1,14 +1,21 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:dir="getTextDirection()">
     <AppNav></AppNav>
     <main>
       <router-view/>
     </main>
-    <footer>
-       <p v-if="language === 'English'">Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400; &nbsp; 2019</p>
+    <footer v-if="language === 'English'">
+       <p>Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400; &nbsp; 2019</p>
         <p>
           <a href="#" @click="changeLanguage('Hebrew')">Hebrew </a> |
           <a href="#" @click="changeLanguage('English')"> English</a>
+        </p>
+    </footer>
+    <footer v-if="language === 'Hebrew'">
+       <p>נוצר על-ידי <a href="https://github.com/TomerPacific">תומר בן-רחל</a> &#9400; &nbsp; 2019</p>
+        <p>
+          <a href="#" @click="changeLanguage('Hebrew')">עברית </a> |
+          <a href="#" @click="changeLanguage('English')"> אנגלית</a>
         </p>
     </footer>
   </div>
@@ -28,6 +35,10 @@
          this.$store.dispatch('setLanguage', {
            language: language,
          });
+       },
+       getTextDirection: function() {
+         let current_language = this.$store.getters.getLanguage;
+         return current_language === 'Hebrew' ? 'rtl' : '';
        }
      },
      computed: {
