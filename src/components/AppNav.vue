@@ -1,5 +1,5 @@
 <template>
-<header>
+<header dir="ltr">
     <img src="../assets/logo.png" id="logo">
     <ul id="navigation">
         <li><router-link to="/">Home</router-link></li>
