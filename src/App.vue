@@ -5,7 +5,7 @@
       <router-view/>
     </main>
     <footer>
-       <p>Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400; &nbsp; 2019</p>
+       <p v-if="language === 'English'">Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400; &nbsp; 2019</p>
         <p>
           <a href="#" @click="changeLanguage('Hebrew')">Hebrew </a> |
           <a href="#" @click="changeLanguage('English')"> English</a>
@@ -25,8 +25,15 @@
      },
      methods: {
        changeLanguage: function(language) {
-         
+         this.$store.dispatch('setLanguage', {
+           language: language,
+         });
        }
+     },
+     computed: {
+       language() {
+          return this.$store.getters.getLanguage;
+       },
      }
  }
 </script>

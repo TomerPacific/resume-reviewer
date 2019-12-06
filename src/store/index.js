@@ -21,15 +21,15 @@ export const store = new Vuex.Store({
             state.userLoggedIn = false;
         },
         setLanguage(state, payload) {
-            state.language = payload;
+            state.language = payload.language;
         }
     },
     actions: {
         logoutUser( {commit}, event) {
             commit('userLoggedOut', event);
         },
-        setLanguage( {commit}, event) {
-            commit('setLanguage', event);
+        setLanguage( {commit}, payload) {
+            commit('setLanguage', payload);
         }
     }
 });
