@@ -1,15 +1,31 @@
 <template>
   <div class="home">
     <img id="interview" src="../assets/interview.jpg" alt="interview" title="Photo by Rachel Danner on Unsplash">
-    <p>Welcome To Resume Reviewer! <br>
-      Your one-stop-shop for everything that you need to prepare yourself for a job interview<br>
-    </p>
-    <br>
-    <p>We do the following:</p>
+    <div v-if="language === 'English'">
+      <p>Welcome To Resume Reviewer! <br>
+        Your one-stop-shop for everything that you need to prepare yourself for a job interview<br>
+      </p>
+      <br>
+      <p>We do the following:</p>
+    </div>
 
-    <div>
+    <div v-if="language === 'Hebrew'">
+      <p>ברוכים הבאים ל-Resume Reviewer!<br>
+        המקום שבו יש את כל מה שתצטרכו כדי להכין את עצמכם לראיון עבודה<br>
+      </p>
+      <br>
+      <p>השירותים שאנו נותנים הם:</p>
+    </div>
+
+    <div v-if="language === 'English'">
       <ol id="points">
-        <li v-for="point in points" :key="point"> {{ point }} </li>
+        <li v-for="point in points_english" :key="point"> {{ point }} </li>
+      </ol>
+    </div>
+
+    <div v-if="language === 'Hebrew'">
+      <ol id="points">
+        <li v-for="point in points_hebrew" :key="point"> {{ point }} </li>
       </ol>
     </div>
   </div>
@@ -22,7 +38,7 @@ export default {
   name: 'home',
   data: function(){
     return {
-      points: [
+      points_english: [
         "Reviewing Your Resume",
         "Pre Interview Training",
         "Behavioral Questions",
@@ -30,10 +46,23 @@ export default {
         "Whiteboard Practice",
         "Pair Programming Exercises"
       ],
+      points_hebrew: [
+        "ביקורת של קורות חיים",
+        "אימון לפני ראיון עבודה",
+        "שאלות התנהגותיות",
+        "הכנה להתאמת תרבות ארגונית",
+        "תרגול שאלות על לוח מחיק",
+        "אימון עבודה משותפת על קוד"
+      ],
     }
   },
   components: {
     
+  },
+  computed: {
+    language() {
+      return this.$store.getters.getLanguage;
+    },
   }
 }
 </script>
