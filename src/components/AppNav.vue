@@ -1,10 +1,15 @@
 <template>
 <header dir="ltr">
     <img src="../assets/logo.png" id="logo">
-    <ul id="navigation">
+    <ul id="navigation" v-if="language === 'English'">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/file">Upload Resume</router-link></li>
+    </ul>
+    <ul id="navigation" v-if="language === 'Hebrew'">
+        <li><router-link to="/">דף בית</router-link></li>
+        <li><router-link to="/about">אודות</router-link></li>
+        <li><router-link to="/file">העלאת קורות חיים</router-link></li>
     </ul>
     <div id="login" v-if="!isUserLoggedIn">
       <form @submit="checkForm" action="" method="">
@@ -62,7 +67,10 @@ export default {
   computed: {
     isUserLoggedIn() {
       return this.$store.getters.isUserLoggedIn;
-    }
+    },
+    language() {
+      return this.$store.getters.getLanguage;
+    },
   }
 }
 
