@@ -1,19 +1,35 @@
 <template>
   <div class="about">
-    <h1>About</h1>
+    <h1 v-if="language === 'English'">About</h1>
+    <h1 v-if="language === 'Hebrew'">אודות</h1>
 
     <div id="content">
-      <p>We are a group of Software Engineers with considerable time spent in the industry. <br>
+      <p v-if="language === 'English'">We are a group of Software Engineers with considerable time spent in the industry. <br>
         We have worked under various companies and have undergone a plethora of interviewing processes. <br>
         We have encountered the bizzare, the obnoxious, and the difficult and have learned and prepared accordingly to each one. <br>
         Use our knowledge and expertise to gurantee that your next job interview will be the best that you had.</p>
-    
+      <p v-if="language === 'Hebrew'">
+        אנחנו קבוצה של מפתחים עם ניסיון רב בתעשייה. עבדנו תחת חברות מכל מיני סוגים ועברנו תהליכי גיוס רבים.<br>
+        נתקלנו בתהליכים שהיו מוזרים, מעצבנים וקשים ולכל אחד מהם התכוננו בהתאם. <br>
+        השתמשו בידע שלנו ובשירותנו כדי להבטיח שראיון העבודה הבא שלכם יהיה הכי טוב שהיה לכם.
+      </p>
       <img src="../assets/about.jpg" alt="Happiness is getting the job done!" id="about_picture"
             title="Photo by Ali Yahya on Unsplash">
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  name: 'About',
+  computed: {
+    language() {
+      return this.$store.getters.getLanguage;
+    },
+  }
+}
+
+</script>
 
 <style scoped>
 
