@@ -71,6 +71,9 @@ footer{
         color: white;
         text-align: center;
     }
+footer a {
+  font-size: 16px;
+}
 
 footer a:hover {
   color: #0088A9;
