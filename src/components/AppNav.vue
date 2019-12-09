@@ -15,7 +15,7 @@
       <form @submit="checkForm" action="" method="">
         <i class="fas fa-user"></i><input id="username" type="text" value="" placeholder="Username" v-model="username"> <br>
         <i class="fas fa-key"></i><input id="password" type="password" value="" placeholder="Password" v-model="password">
-        <input type="submit" value="Submit" id="submit_btn">
+        <input type="submit" value="Submit" id="submit_btn" @click="signin">
       </form>
     </div>
     <div id="logut" v-else>
@@ -26,6 +26,8 @@
 
 
 <script>
+
+import firebase from 'firebase';
 
 export default {
   name: 'AppNav',
@@ -48,11 +50,8 @@ export default {
       passwordInput.classList.remove("missing_input");
 
       if (this.username && this.password) {
-        
         return true;
       }
-
-     
       
       if (!this.username) {
         usernameInput.classList.add("missing_input");
@@ -62,6 +61,18 @@ export default {
       }
 
       e.preventDefault();
+    },
+    signin: function() {
+      let that = this;
+      firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
+      .then(function(user) {
+        console.log("User has been created successfully!");
+        console.log(user);
+        that.$store.dispatch('loginUser', {});
+      },
+      function(err) {
+        console.log("Error when creating user " + err.message);
+      })
     }
   },
   computed: {
