@@ -7,6 +7,7 @@ export const store = new Vuex.Store({
     state: {
         userLoggedIn: false,
         language: 'Hebrew',
+        currentUser: null,
     },
     getters: {
         isUserLoggedIn(state) {
@@ -23,8 +24,9 @@ export const store = new Vuex.Store({
         setLanguage(state, payload) {
             state.language = payload.language;
         },
-        userLoggedIn(state) {
+        userLoggedIn(state, payload) {
             state.userLoggedIn = true;
+            state.currentUser = payload.currentUser;
         },
     },
     actions: {
@@ -34,8 +36,8 @@ export const store = new Vuex.Store({
         setLanguage( {commit}, payload) {
             commit('setLanguage', payload);
         },
-        loginUser( {commit}, event) {
-            commit('userLoggedIn', event);
+        loginUser( {commit}, payload) {
+            commit('userLoggedIn', payload);
         }
     }
 });

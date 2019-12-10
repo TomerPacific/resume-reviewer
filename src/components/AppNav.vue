@@ -66,9 +66,7 @@ export default {
       let that = this;
       firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
       .then(function(user) {
-        console.log("User has been created successfully!");
-        console.log(user);
-        that.$store.dispatch('loginUser', {});
+        that.$store.dispatch('loginUser', {currentUser: user});
       },
       function(err) {
         console.log("Error when creating user " + err.message);
