@@ -39,7 +39,11 @@ export default {
   },
   methods : {
     logoutUser() {
-      this.$store.dispatch('logoutUser');
+      let that = this;
+      firebase.auth().signOut()
+      .then(function() {
+        that.$store.dispatch('logoutUser');
+      });
     },
     checkForm: function(e) {
 
