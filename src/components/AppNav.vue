@@ -43,6 +43,8 @@ export default {
       firebase.auth().signOut()
       .then(function() {
         that.$store.dispatch('logoutUser');
+        that.username = '';
+        that.password = '';
       });
     },
     checkForm: function(e) {
