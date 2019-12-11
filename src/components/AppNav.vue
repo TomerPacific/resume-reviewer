@@ -80,7 +80,14 @@ export default {
       })
     },
     login: function() {
-      
+      let that = this;
+      firebase.auth().signInWithEmailAndPassword(this.username, this.password)
+      .then(function(user) {
+        that.$store.dispatch('loginUser', {currentUser: user});
+      },
+      function(err) {
+        console.log("Error when user logged in " + err.message);
+      });
     }
   },
   computed: {
