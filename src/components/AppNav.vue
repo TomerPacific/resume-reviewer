@@ -167,16 +167,22 @@ export default {
   #login_btn {
     position: absolute;
     right: 5;
+    width: 55px;
   }
 
   #signin_btn {
       position: absolute;
       right: 5;
+      width: 55px;
   }
 
   #logout_btn {
     color: white;
     width: 55px;
+  }
+
+  #signin_btn:hover, #login_btn:hover, #logout_btn:hover {
+     color: #0088A9;
   }
 
   .missing_input {
