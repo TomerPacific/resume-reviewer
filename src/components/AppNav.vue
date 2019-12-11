@@ -13,9 +13,10 @@
     </ul>
     <div id="login" v-if="!isUserLoggedIn">
       <form @submit="checkForm" action="" method="">
-        <i class="fas fa-user"></i><input id="username" type="email" value="" placeholder="E-mail" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"> <br>
+        <i class="fas fa-user"></i><input id="username" type="email" value="" placeholder="E-mail" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"> 
+        <input type="submit" value="Log In" id="login_btn" @click="login"> <br>
         <i class="fas fa-key"></i><input id="password" type="password" value="" placeholder="Password" v-model="password">
-        <input type="submit" value="Submit" id="submit_btn" @click="signin">
+        <input type="submit" value="Sign Up" id="signin_btn" @click="signin">
       </form>
     </div>
     <div id="logut" v-else>
@@ -77,6 +78,9 @@ export default {
       function(err) {
         console.log("Error when creating user " + err.message);
       })
+    },
+    login: function() {
+      
     }
   },
   computed: {
@@ -153,9 +157,14 @@ export default {
     color: white;
   }
 
-  #submit_btn {
+  #login_btn {
     position: absolute;
     right: 5;
+  }
+
+  #signin_btn {
+      position: absolute;
+      right: 5;
   }
 
   #logout_btn {
