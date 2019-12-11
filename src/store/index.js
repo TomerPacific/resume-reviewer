@@ -6,8 +6,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         userLoggedIn: false,
-        language: 'Hebrew',
-        currentUser: null,
+        language: 'Hebrew'
     },
     getters: {
         isUserLoggedIn(state) {
