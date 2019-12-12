@@ -23,9 +23,8 @@ export const store = new Vuex.Store({
         setLanguage(state, payload) {
             state.language = payload.language;
         },
-        userLoggedIn(state, payload) {
+        userLoggedIn(state) {
             state.userLoggedIn = true;
-            state.currentUser = payload.currentUser;
         },
     },
     actions: {
