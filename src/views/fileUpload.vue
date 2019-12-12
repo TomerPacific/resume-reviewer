@@ -82,7 +82,7 @@ export default {
 
         },
         isUserLoggedIn: function() {
-            return this.$store.getters.isUserLoggedIn;
+            return (firebase.auth().currentUser && this.$store.getters.isUserLoggedIn );
         },
         uploadFile: function(event) {
             this.hasError = false;
