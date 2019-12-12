@@ -6,6 +6,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path:'*',
+    redirect: 'home'
+  },
+  {
     path: '/',
     name: 'home',
     component: Home
@@ -13,20 +17,17 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import('../views/About.vue')
   },
   {
     path: '/file',
     name: 'fileUpload',
-    component: () => import('../views/fileUpload.vue')
+    component: () => import('../views/fileUpload.vue'),
   }
 ]
 
 const router = new VueRouter({
   routes
-})
+});
 
-export default router
+export default router;
