@@ -7,14 +7,14 @@
     <footer v-if="language === ENGLISH_LANGUAGE">
        <p>Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400; &nbsp; 2019</p>
         <p>
-          <a href="#" class="withDivider" @click="changeLanguage(HEBREW_LANGUAGE)">Hebrew </a>
-          <a href="#" @click="changeLanguage(ENGLISH_LANGUAGE)">English</a>
+          <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)">Hebrew </a>
+          <a href="#" id="english_language_link" @click="changeLanguage(ENGLISH_LANGUAGE)">English</a>
         </p>
     </footer>
     <footer v-if="language === HEBREW_LANGUAGE">
        <p>נוצר על-ידי <a href="https://github.com/TomerPacific">תומר בן-רחל</a> &#9400; &nbsp; 2019</p>
         <p>
-          <a href="#" class="withDivider" @click="changeLanguage(ENGLISH_LANGUAGE)">אנגלית </a>
+          <a href="#" id="english_language_link" @click="changeLanguage(ENGLISH_LANGUAGE)">אנגלית </a>
           <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)"> עברית</a>
         </p>
     </footer>
@@ -78,6 +78,8 @@ footer{
     }
 footer a {
   font-size: 16px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 footer a:hover {
@@ -86,6 +88,10 @@ footer a:hover {
 
 .withDivider:after {
   content: ' | ';
+}
+
+#english_language_link {
+  border-left:1px solid white;
 }
 
 </style>
