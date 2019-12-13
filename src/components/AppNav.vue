@@ -13,14 +13,14 @@
     </ul>
     <div id="login" v-if="!isUserLoggedIn">
       <form @submit="checkForm" action="" method="">
-        <i class="fas fa-user"></i><input id="username" type="email" value="" placeholder="E-mail" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"> 
-        <input type="submit" value="Log In" id="login_btn" @click="login"> <br>
-        <i class="fas fa-key"></i><input id="password" type="password" value="" placeholder="Password" v-model="password">
-        <input type="submit" value="Sign Up" id="signin_btn" @click="signin">
+        <i class="fas fa-user"></i><input id="username" type="email" value="" :placeholder="language === HEBREW_LANGUAGE ? 'אימייל' : 'Email'" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"> 
+        <input type="submit" :value="language === HEBREW_LANGUAGE ? 'התחברות' : 'Log In'" id="login_btn" @click="login"> <br>
+        <i class="fas fa-key"></i><input id="password" type="password" value="" :placeholder="language === HEBREW_LANGUAGE ? 'סיסמא' : 'Password'" v-model="password">
+        <input type="submit" :value="language === HEBREW_LANGUAGE ? 'הרשמה' : 'Sign Up'" id="signin_btn" @click="signin">
       </form>
     </div>
     <div id="logut" v-else>
-      <button id="logout_btn" v-on:click="logoutUser">Logout</button>
+      <button id="logout_btn" v-on:click="logoutUser">{{language === HEBREW_LANGUAGE ? 'התנתק' : 'Logout' }}</button>
     </div>
 </header>
 </template>
@@ -183,6 +183,7 @@ export default {
 
   #logout_btn {
     color: white;
+    font-weight: 800;
     width: 55px;
   }
 
