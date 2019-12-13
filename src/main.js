@@ -13,15 +13,27 @@ Vue.use(Vuex);
 
 let app = '';
 
-const firebaseConfig = {
-    apiKey: process.env.VUE_APP_FIREBASE_KEY,
-    authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
-    databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL,
+const firebaseConfigProd = {
+    apiKey: process.env.VUE_APP_FIREBASE_KEY_PROD,
+    authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN_PROD,
+    databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL_PROD,
     projectId: "resume-reviewer",
-    storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.VUE_APP_FIREBASE_SENDER_ID,
-    appId: process.env.VUE_APP_FIREBASE_APP_ID
+    storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET_PROD,
+    messagingSenderId: process.env.VUE_APP_FIREBASE_SENDER_ID_PROD,
+    appId: process.env.VUE_APP_FIREBASE_APP_ID_PROD
 };
+
+const firebaseConfigDev = {
+  apiKey: process.env.VUE_APP_FIREBASE_KEY_DEV,
+  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN_DEV,
+  databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL_DEV,
+  projectId: "resume-reviewer-dev",
+  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET_DEV,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_SENDER_ID_DEV,
+  appId: process.env.VUE_APP_FIREBASE_APP_ID_DEV
+};
+
+const firebaseConfig = process.env.NODE_ENV === 'production' ? firebaseConfigProd : firebaseConfigDev;
 
 firebase.initializeApp(firebaseConfig);
 
