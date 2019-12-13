@@ -4,13 +4,17 @@
         <h1 v-if="language === HEBREW_LANGUAGE">העלאת קורות חיים</h1>
         <div id="explanation">
             <p v-if="language === ENGLISH_LANGUAGE">In order to start the reviewing process, it is needed to submit your resume.<br>
-               We accept <strong>PDF</strong> files or Word documents (<strong>.doc, .docx</strong>). 
+               We accept <strong>PDF</strong> files or Word documents (<strong>.doc, .docx</strong>).
             </p>
             <p v-if="language === HEBREW_LANGUAGE">כדי להתחיל את תהליך הביקורת, אנא הגישו את קורות החיים שלכם<br>
                אנו מקבלים קבצים מסוג <strong>PDF</strong> או מסמכי וורד (<strong>.doc, .docx</strong>). 
             </p>
         </div>
         <div class="form-group">
+            <p v-if="language === ENGLISH_LANGUAGE"><strong>You will need to Login/Signup in order to upload your resume</strong></p> 
+            <p v-if="language === HEBREW_LANGUAGE"><strong>אתם צריכים להתחבר/להירשם כדי להעלות קובץ</strong></p>
+            <br>
+
             <label v-if="language === ENGLISH_LANGUAGE" for="file" >Choose File:</label>
             <label v-if="language === HEBREW_LANGUAGE" for="file">בחר קובץ:</label>
             <input type="file" id="file" v-on:change="uploadFile">
