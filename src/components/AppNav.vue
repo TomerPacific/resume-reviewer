@@ -1,12 +1,12 @@
 <template>
 <header dir="ltr">
     <img src="../assets/logo.png" id="logo">
-    <ul id="navigation" v-if="language === 'English'">
+    <ul id="navigation" v-if="language === ENGLISH_LANGUAGE">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/file">Upload Resume</router-link></li>
     </ul>
-    <ul id="navigation" v-if="language === 'Hebrew'">
+    <ul id="navigation" v-if="language === HEBREW_LANGUAGE">
         <li><router-link to="/">דף בית</router-link></li>
         <li><router-link to="/about">אודות</router-link></li>
         <li><router-link to="/file">העלאת קורות חיים</router-link></li>
@@ -29,9 +29,14 @@
 <script>
 
 import firebase from 'firebase';
+import Constants from '../constants.js';
 
 export default {
   name: 'AppNav',
+  created() {
+    this.HEBREW_LANGUAGE = Constants.HEBREW_LANGUAGE;
+    this.ENGLISH_LANGUAGE = Constants.ENGLISH_LANGUAGE;
+  },
   data: function() {
     return {
         username: null,
