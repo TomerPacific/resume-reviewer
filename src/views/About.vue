@@ -1,14 +1,14 @@
 <template>
   <div class="about">
-    <h1 v-if="language === 'English'">About</h1>
-    <h1 v-if="language === 'Hebrew'">אודות</h1>
+    <h1 v-if="language === ENGLISH_LANGUAGE">About</h1>
+    <h1 v-if="language === HEBREW_LANGUAGE">אודות</h1>
 
     <div id="content">
-      <p v-if="language === 'English'">We are a group of Software Engineers with considerable time spent in the industry. <br>
+      <p v-if="language === ENGLISH_LANGUAGE">We are a group of Software Engineers with considerable time spent in the industry. <br>
         We have worked under various companies and have undergone a plethora of interviewing processes. <br>
         We have encountered the bizzare, the obnoxious, and the difficult and have learned and prepared accordingly to each one. <br>
         Use our knowledge and expertise to gurantee that your next job interview will be the best that you had.</p>
-      <p v-if="language === 'Hebrew'">
+      <p v-if="language === HEBREW_LANGUAGE">
         אנחנו קבוצה של מפתחים עם ניסיון רב בתעשייה. עבדנו תחת חברות מכל מיני סוגים ועברנו תהליכי גיוס רבים.<br>
         נתקלנו בתהליכים שהיו מוזרים, מעצבנים וקשים ולכל אחד מהם התכוננו בהתאם. <br>
         השתמשו בידע שלנו ובשירותנו כדי להבטיח שראיון העבודה הבא שלכם יהיה הכי טוב שהיה לכם.
@@ -20,8 +20,15 @@
 </template>
 
 <script>
+
+import Constants from '../constants.js';
+
 export default {
   name: 'About',
+  created() {
+       this.HEBREW_LANGUAGE = Constants.HEBREW_LANGUAGE;
+       this.ENGLISH_LANGUAGE = Constants.ENGLISH_LANGUAGE;
+  },
   computed: {
     language() {
       return this.$store.getters.getLanguage;

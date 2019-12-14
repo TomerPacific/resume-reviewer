@@ -1,25 +1,26 @@
 <template>
 <header dir="ltr">
     <img src="../assets/logo.png" id="logo">
-    <ul id="navigation" v-if="language === 'English'">
+    <ul id="navigation" v-if="language === ENGLISH_LANGUAGE">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/file">Upload Resume</router-link></li>
     </ul>
-    <ul id="navigation" v-if="language === 'Hebrew'">
+    <ul id="navigation" v-if="language === HEBREW_LANGUAGE">
         <li><router-link to="/">דף בית</router-link></li>
         <li><router-link to="/about">אודות</router-link></li>
         <li><router-link to="/file">העלאת קורות חיים</router-link></li>
     </ul>
     <div id="login" v-if="!isUserLoggedIn">
       <form @submit="checkForm" action="" method="">
-        <i class="fas fa-user"></i><input id="username" type="text" value="" placeholder="Username" v-model="username"> <br>
-        <i class="fas fa-key"></i><input id="password" type="password" value="" placeholder="Password" v-model="password">
-        <input type="submit" value="Submit" id="submit_btn">
+        <i class="fas fa-user"></i><input id="username" type="email" value="" :placeholder="language === HEBREW_LANGUAGE ? 'אימייל' : 'Email'" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"> 
+        <input type="submit" :value="language === HEBREW_LANGUAGE ? 'התחברות' : 'Log In'" id="login_btn" @click="login"> <br>
+        <i class="fas fa-key"></i><input id="password" type="password" value="" :placeholder="language === HEBREW_LANGUAGE ? 'סיסמא' : 'Password'" v-model="password">
+        <input type="submit" :value="language === HEBREW_LANGUAGE ? 'הרשמה' : 'Sign Up'" id="signin_btn" @click="signin">
       </form>
     </div>
     <div id="logut" v-else>
-      <button id="logout_btn" v-on:click="logoutUser">Logout</button>
+      <button id="logout_btn" v-on:click="logoutUser">{{language === HEBREW_LANGUAGE ? 'התנתק' : 'Logout' }}</button>
     </div>
 </header>
 </template>
@@ -27,8 +28,15 @@
 
 <script>
 
+import firebase from 'firebase';
+import Constants from '../constants.js';
+
 export default {
   name: 'AppNav',
+  created() {
+    this.HEBREW_LANGUAGE = Constants.HEBREW_LANGUAGE;
+    this.ENGLISH_LANGUAGE = Constants.ENGLISH_LANGUAGE;
+  },
   data: function() {
     return {
         username: null,
@@ -37,7 +45,13 @@ export default {
   },
   methods : {
     logoutUser() {
-      this.$store.dispatch('logoutUser');
+      let that = this;
+      firebase.auth().signOut()
+      .then(function() {
+        that.$store.dispatch('logoutUser');
+        that.username = '';
+        that.password = '';
+      });
     },
     checkForm: function(e) {
 
@@ -48,11 +62,8 @@ export default {
       passwordInput.classList.remove("missing_input");
 
       if (this.username && this.password) {
-        
         return true;
       }
-
-     
       
       if (!this.username) {
         usernameInput.classList.add("missing_input");
@@ -62,6 +73,26 @@ export default {
       }
 
       e.preventDefault();
+    },
+    signin: function() {
+      let that = this;
+      firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
+      .then(function(user) {
+        that.$store.dispatch('loginUser', {currentUser: user});
+      },
+      function(err) {
+        console.log("Error when creating user " + err.message);
+      })
+    },
+    login: function() {
+      let that = this;
+      firebase.auth().signInWithEmailAndPassword(this.username, this.password)
+      .then(function(user) {
+        that.$store.dispatch('loginUser', {currentUser: user});
+      },
+      function(err) {
+        console.log("Error when user logged in " + err.message);
+      });
     }
   },
   computed: {
@@ -138,14 +169,26 @@ export default {
     color: white;
   }
 
-  #submit_btn {
+  #login_btn {
     position: absolute;
     right: 5;
+    width: 55px;
+  }
+
+  #signin_btn {
+      position: absolute;
+      right: 5;
+      width: 55px;
   }
 
   #logout_btn {
     color: white;
+    font-weight: 800;
     width: 55px;
+  }
+
+  #signin_btn:hover, #login_btn:hover, #logout_btn:hover {
+     color: #0088A9;
   }
 
   .missing_input {

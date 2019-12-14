@@ -4,18 +4,18 @@
     <main>
       <router-view/>
     </main>
-    <footer v-if="language === 'English'">
+    <footer v-if="language === ENGLISH_LANGUAGE">
        <p>Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400; &nbsp; 2019</p>
         <p>
-          <a href="#" class="withDivider" @click="changeLanguage('Hebrew')">Hebrew </a>
-          <a href="#" @click="changeLanguage('English')">English</a>
+          <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)">Hebrew </a>
+          <a href="#" id="english_language_link" @click="changeLanguage(ENGLISH_LANGUAGE)">English</a>
         </p>
     </footer>
-    <footer v-if="language === 'Hebrew'">
+    <footer v-if="language === HEBREW_LANGUAGE">
        <p>נוצר על-ידי <a href="https://github.com/TomerPacific">תומר בן-רחל</a> &#9400; &nbsp; 2019</p>
         <p>
-          <a href="#" class="withDivider" @click="changeLanguage('English')">אנגלית </a>
-          <a href="#" @click="changeLanguage('Hebrew')"> עברית</a>
+          <a href="#" id="english_language_link" @click="changeLanguage(ENGLISH_LANGUAGE)">אנגלית </a>
+          <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)"> עברית</a>
         </p>
     </footer>
   </div>
@@ -24,9 +24,14 @@
 
 <script>
  import AppNav from './components/AppNav.vue'
+ import Constants from './constants.js'
 
  export default {
      name: 'app',
+     created() {
+       this.HEBREW_LANGUAGE = Constants.HEBREW_LANGUAGE;
+       this.ENGLISH_LANGUAGE = Constants.ENGLISH_LANGUAGE;
+     },
      components:{
         AppNav
      },
@@ -38,7 +43,7 @@
        },
        getTextDirection: function() {
          let current_language = this.$store.getters.getLanguage;
-         return current_language === 'Hebrew' ? 'rtl' : '';
+         return current_language === Constants.HEBREW_LANGUAGE ? Constants.TEXT_DIRECTION_RTL : '';
        }
      },
      computed: {
@@ -71,6 +76,11 @@ footer{
         color: white;
         text-align: center;
     }
+footer a {
+  font-size: 16px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
 
 footer a:hover {
   color: #0088A9;
@@ -78,6 +88,10 @@ footer a:hover {
 
 .withDivider:after {
   content: ' | ';
+}
+
+#english_language_link {
+  border-left:1px solid white;
 }
 
 </style>
