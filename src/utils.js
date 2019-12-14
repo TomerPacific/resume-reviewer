@@ -10,7 +10,9 @@ export default {
                     errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'You have uploaded a wrong file type.' : 'העלתם קובץ לא מתאים';
                     break;
                 default:
-                    errorMessage = 'An error has occurred while uploading the file. Please try again.';
+                    errorMessage = language === Constants.ENGLISH_LANGUAGE ? 
+                    'An error has occurred while uploading the file. Please try again' :
+                    'אירעה שגיאה בעת העלאת הקובץ. אנא, נסו שוב'
             }
 
             return errorMessage;
@@ -22,7 +24,6 @@ export default {
             } else if (error === 'Invalid File') {
                 errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'You have uploaded a wrong file type' : 'ניסיתם להעלות קובץ מטיפוס לא נתמך';
             }
-
             return errorMessage;
         }
 }
