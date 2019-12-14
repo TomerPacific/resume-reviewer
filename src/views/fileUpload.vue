@@ -95,13 +95,13 @@ export default {
             this.fileToUpload = event.target.files[0];
             if (!this.isUserLoggedIn()) {
                 this.hasError = true;
-                this.errorMessage = Utils.convertFileUploadingError('User Not Logged In', this.language);
+                this.errorMessage = Utils.convertFileUploadingError(Constants.errors.USER_NOT_LOGGED_IN, this.language);
             }
             else if (this.isFileValid()) {
                 this.beginUploadingFile();
             } else {
                 this.hasError = true;
-                this.errorMessage = Utils.convertFileUploadingError('Invalid File', this.language);
+                this.errorMessage = Utils.convertFileUploadingError(Constants.errors.INVALID_FILE_UPLOAD, this.language);
             }
         }
     }, //end methods
