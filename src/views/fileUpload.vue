@@ -38,10 +38,6 @@
 
 
 <script>
-const PDF_FILE_MIME_TYPE = 'application/pdf';
-const MSWORD_DOC_FILE_MIME_TYPE = 'application/msword';
-const MSWORD_DOCX_FILE_MIME_TYPE = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-const MAXIMUM_FILE_SIZE_IN_BYTES = 5000000;
 
 import firebase from 'firebase';
 import Constants from '../constants.js';
@@ -66,10 +62,10 @@ export default {
     methods: {
         isFileValid: function() {
             let fileType = this.fileToUpload && this.fileToUpload.type;
-            return ((fileType === PDF_FILE_MIME_TYPE || 
-                    fileType === MSWORD_DOC_FILE_MIME_TYPE || 
-                    fileType === MSWORD_DOCX_FILE_MIME_TYPE) && 
-                    this.fileToUpload.size < MAXIMUM_FILE_SIZE_IN_BYTES);
+            return ((fileType === Constants.PDF_FILE_MIME_TYPE || 
+                    fileType === Constants.MSWORD_DOC_FILE_MIME_TYPE || 
+                    fileType === Constants.MSWORD_DOCX_FILE_MIME_TYPE) && 
+                    this.fileToUpload.size < Constants.MAXIMUM_FILE_SIZE_IN_BYTES);
         },
         beginUploadingFile: function() {
             this.isUploading = true;
