@@ -45,6 +45,7 @@ const MAXIMUM_FILE_SIZE_IN_BYTES = 5000000;
 
 import firebase from 'firebase';
 import Constants from '../constants.js';
+import Utils from '../utils.js';
 
 export default {
     
@@ -76,13 +77,7 @@ export default {
             storageRef.on(`state_changed`, snapshot => {
                 this.uploadValue = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
             }, error => {
-                switch(error.code) {
-                    case 'storage/unauthorized':
-                        this.errorMessage = 'You have uploaded a wrong file type.';
-                        break;
-                    default:
-                        this.errorMessage = 'An error has occurred while uploading the file. Please try again.';
-                }
+                this.errorMessage = Utils.convertFirebaseErrorIntoErrorMessage(error, this.language);
                 this.isUploading = false;
                 this.hasError = true;
             }, () => {
@@ -92,7 +87,7 @@ export default {
 
         },
         isUserLoggedIn: function() {
-            return (firebase.auth().currentUser && this.$store.getters.isUserLoggedIn );
+            return (firebase.auth().currentUser && this.$store.getters.isUserLoggedIn);
         },
         uploadFile: function(event) {
             this.hasError = false;
@@ -100,13 +95,13 @@ export default {
             this.fileToUpload = event.target.files[0];
             if (!this.isUserLoggedIn()) {
                 this.hasError = true;
-                this.errorMessage = 'Please login/register to upload your resume';
+                this.errorMessage = Utils.convertFileUploadingError('User Not Logged In', this.language);
             }
             else if (this.isFileValid()) {
                 this.beginUploadingFile();
             } else {
                 this.hasError = true;
-                this.errorMessage = 'You have uploaded a wrong file type.';
+                this.errorMessage = Utils.convertFileUploadingError('Invalid File', this.language);
             }
         }
     }, //end methods
