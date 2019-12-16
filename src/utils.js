@@ -19,9 +19,9 @@ export default {
         },
         convertFileUploadingError(error, language) {
             let errorMessage = '';
-            if (error === 'User Not Logged In') {
+            if (error === Constants.errors.USER_NOT_LOGGED_IN) {
                 errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'Please login/register to upload your resume' : 'אנא הרשמו כדי להעלות את קובץ קורות החיים';
-            } else if (error === 'Invalid File') {
+            } else if (error === Constants.errors.INVALID_FILE_UPLOAD) {
                 errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'You have uploaded a wrong file type' : 'ניסיתם להעלות קובץ מטיפוס לא נתמך';
             }
             return errorMessage;
