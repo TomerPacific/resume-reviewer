@@ -38,13 +38,10 @@
 
 
 <script>
-const PDF_FILE_MIME_TYPE = 'application/pdf';
-const MSWORD_DOC_FILE_MIME_TYPE = 'application/msword';
-const MSWORD_DOCX_FILE_MIME_TYPE = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-const MAXIMUM_FILE_SIZE_IN_BYTES = 5000000;
 
 import firebase from 'firebase';
 import Constants from '../constants.js';
+import Utils from '../utils.js';
 
 export default {
     
@@ -65,10 +62,10 @@ export default {
     methods: {
         isFileValid: function() {
             let fileType = this.fileToUpload && this.fileToUpload.type;
-            return ((fileType === PDF_FILE_MIME_TYPE || 
-                    fileType === MSWORD_DOC_FILE_MIME_TYPE || 
-                    fileType === MSWORD_DOCX_FILE_MIME_TYPE) && 
-                    this.fileToUpload.size < MAXIMUM_FILE_SIZE_IN_BYTES);
+            return ((fileType === Constants.PDF_FILE_MIME_TYPE || 
+                    fileType === Constants.MSWORD_DOC_FILE_MIME_TYPE || 
+                    fileType === Constants.MSWORD_DOCX_FILE_MIME_TYPE) && 
+                    this.fileToUpload.size < Constants.MAXIMUM_FILE_SIZE_IN_BYTES);
         },
         beginUploadingFile: function() {
             this.isUploading = true;
@@ -76,13 +73,7 @@ export default {
             storageRef.on(`state_changed`, snapshot => {
                 this.uploadValue = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
             }, error => {
-                switch(error.code) {
-                    case 'storage/unauthorized':
-                        this.errorMessage = 'You have uploaded a wrong file type.';
-                        break;
-                    default:
-                        this.errorMessage = 'An error has occurred while uploading the file. Please try again.';
-                }
+                this.errorMessage = Utils.convertFirebaseErrorIntoErrorMessage(error, this.language);
                 this.isUploading = false;
                 this.hasError = true;
             }, () => {
@@ -92,7 +83,7 @@ export default {
 
         },
         isUserLoggedIn: function() {
-            return (firebase.auth().currentUser && this.$store.getters.isUserLoggedIn );
+            return (firebase.auth().currentUser && this.$store.getters.isUserLoggedIn);
         },
         uploadFile: function(event) {
             this.hasError = false;
@@ -100,13 +91,13 @@ export default {
             this.fileToUpload = event.target.files[0];
             if (!this.isUserLoggedIn()) {
                 this.hasError = true;
-                this.errorMessage = 'Please login/register to upload your resume';
+                this.errorMessage = Utils.convertFileUploadingError(Constants.errors.USER_NOT_LOGGED_IN, this.language);
             }
             else if (this.isFileValid()) {
                 this.beginUploadingFile();
             } else {
                 this.hasError = true;
-                this.errorMessage = 'You have uploaded a wrong file type.';
+                this.errorMessage = Utils.convertFileUploadingError(Constants.errors.INVALID_FILE_UPLOAD, this.language);
             }
         }
     }, //end methods
