@@ -5,14 +5,14 @@
       <router-view/>
     </main>
     <footer v-if="language === ENGLISH_LANGUAGE">
-       <p>Created by <a href="https://github.com/TomerPacific">Tomer Ben Rachel</a> &#9400; &nbsp; 2019</p>
+       <p>Created by <a href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</a> &#9400; &nbsp; 2019</p>
         <p>
           <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)">Hebrew </a>
           <a href="#" id="english_language_link" @click="changeLanguage(ENGLISH_LANGUAGE)">English</a>
         </p>
     </footer>
     <footer v-if="language === HEBREW_LANGUAGE">
-       <p>נוצר על-ידי <a href="https://github.com/TomerPacific">תומר בן-רחל</a> &#9400; &nbsp; 2019</p>
+       <p>נוצר על-ידי <a href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</a> &#9400; &nbsp; 2019</p>
         <p>
           <a href="#" id="english_language_link" @click="changeLanguage(ENGLISH_LANGUAGE)">אנגלית </a>
           <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)"> עברית</a>
