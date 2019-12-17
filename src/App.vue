@@ -41,15 +41,6 @@
          this.$store.dispatch('setLanguage', {
            language: language,
          });
-          let hebrew_language_link = document.getElementById("hebrew_language_link");
-          let english_language_link = document.getElementById("english_language_link");
-          if (language === this.HEBREW_LANGUAGE) {
-            english_language_link.classList.remove('withDivider');
-            hebrew_language_link.classList.add('withDivider');
-          } else if (language === this.ENGLISH_LANGUAGE) {
-            hebrew_language_link.classList.remove('withDivider');
-            english_language_link.classList.add('withDivider');
-          }
        },
        getTextDirection: function() {
          return this.language === Constants.HEBREW_LANGUAGE ? Constants.TEXT_DIRECTION_RTL : '';
