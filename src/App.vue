@@ -7,8 +7,8 @@
     <footer>
        <p> Copyright &#9400; 2019 <a href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</a></p>
         <p>
-          <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)">Hebrew </a>
-          <a href="#" id="english_language_link" @click="changeLanguage(ENGLISH_LANGUAGE)">English</a>
+          <a href="#" id = "hebrew_language_link" class="withDivider" @click="changeLanguage(HEBREW_LANGUAGE)"> {{ language === HEBREW_LANGUAGE ? 'עברית' : 'Hebrew' }}</a>
+          <a href="#" id = "english_language_link" @click="changeLanguage(ENGLISH_LANGUAGE)">{{ language === HEBREW_LANGUAGE ? 'אנגלית' : 'English' }}</a>
         </p>
     </footer>
   </div>
@@ -33,6 +33,15 @@
          this.$store.dispatch('setLanguage', {
            language: language,
          });
+          let hebrew_language_link = document.getElementById("hebrew_language_link");
+          let english_language_link = document.getElementById("english_language_link");
+          if (language === this.HEBREW_LANGUAGE) {
+            english_language_link.classList.remove('withDivider');
+            hebrew_language_link.classList.add('withDivider');
+          } else if (language === this.ENGLISH_LANGUAGE) {
+            hebrew_language_link.classList.remove('withDivider');
+            english_language_link.classList.add('withDivider');
+          }
        },
        getTextDirection: function() {
          let current_language = this.$store.getters.getLanguage;
@@ -79,11 +88,7 @@ footer a:hover {
   color: #0088A9;
 }
 
-.withDivider:after {
-  content: ' | ';
-}
-
-#english_language_link {
+.withDivider {
   border-left:1px solid white;
 }
 
