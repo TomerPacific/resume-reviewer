@@ -44,8 +44,7 @@
           }
        },
        getTextDirection: function() {
-         let current_language = this.$store.getters.getLanguage;
-         return current_language === Constants.HEBREW_LANGUAGE ? Constants.TEXT_DIRECTION_RTL : '';
+         return this.language === Constants.HEBREW_LANGUAGE ? Constants.TEXT_DIRECTION_RTL : '';
        }
      },
      computed: {
