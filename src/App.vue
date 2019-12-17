@@ -4,11 +4,19 @@
     <main>
       <router-view/>
     </main>
-    <footer>
+    <footer v-if="language === ENGLISH_LANGUAGE">
        <p> Copyright &#9400; 2019 <a href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</a></p>
         <p>
-          <a href="#" id = "hebrew_language_link" class="withDivider" @click="changeLanguage(HEBREW_LANGUAGE)"> {{ language === HEBREW_LANGUAGE ? 'עברית' : 'Hebrew' }}</a>
-          <a href="#" id = "english_language_link" @click="changeLanguage(ENGLISH_LANGUAGE)">{{ language === HEBREW_LANGUAGE ? 'אנגלית' : 'English' }}</a>
+          <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)">Hebrew</a>
+          <a href="#" class="withDivider" @click="changeLanguage(ENGLISH_LANGUAGE)">English</a>
+        </p>
+    </footer>
+
+    <footer v-if="language === HEBREW_LANGUAGE">
+       <p> Copyright &#9400; 2019 <a href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</a></p>
+        <p>
+          <a href="#" class="withDivider" @click="changeLanguage(ENGLISH_LANGUAGE)">אנגלית </a>
+          <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)"> עברית</a>
         </p>
     </footer>
   </div>
@@ -33,19 +41,9 @@
          this.$store.dispatch('setLanguage', {
            language: language,
          });
-          let hebrew_language_link = document.getElementById("hebrew_language_link");
-          let english_language_link = document.getElementById("english_language_link");
-          if (language === this.HEBREW_LANGUAGE) {
-            english_language_link.classList.remove('withDivider');
-            hebrew_language_link.classList.add('withDivider');
-          } else if (language === this.ENGLISH_LANGUAGE) {
-            hebrew_language_link.classList.remove('withDivider');
-            english_language_link.classList.add('withDivider');
-          }
        },
        getTextDirection: function() {
-         let current_language = this.$store.getters.getLanguage;
-         return current_language === Constants.HEBREW_LANGUAGE ? Constants.TEXT_DIRECTION_RTL : '';
+         return this.language === Constants.HEBREW_LANGUAGE ? Constants.TEXT_DIRECTION_RTL : '';
        }
      },
      computed: {
