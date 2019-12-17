@@ -4,11 +4,19 @@
     <main>
       <router-view/>
     </main>
-    <footer>
+    <footer v-if="language === ENGLISH_LANGUAGE">
        <p> Copyright &#9400; 2019 <a href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</a></p>
         <p>
-          <a href="#" id = "hebrew_language_link" class="withDivider" @click="changeLanguage(HEBREW_LANGUAGE)"> {{ language === HEBREW_LANGUAGE ? 'עברית' : 'Hebrew' }}</a>
-          <a href="#" id = "english_language_link" @click="changeLanguage(ENGLISH_LANGUAGE)">{{ language === HEBREW_LANGUAGE ? 'אנגלית' : 'English' }}</a>
+          <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)">Hebrew</a>
+          <a href="#" class="withDivider" @click="changeLanguage(ENGLISH_LANGUAGE)">English</a>
+        </p>
+    </footer>
+
+    <footer v-if="language === HEBREW_LANGUAGE">
+       <p> Copyright &#9400; 2019 <a href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</a></p>
+        <p>
+          <a href="#" class="withDivider" @click="changeLanguage(ENGLISH_LANGUAGE)">אנגלית </a>
+          <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)"> עברית</a>
         </p>
     </footer>
   </div>
