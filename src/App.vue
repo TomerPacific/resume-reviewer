@@ -67,23 +67,18 @@ html, body {
   text-align: center;
 }
 
-footer{
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 50px;
-        color: white;
-        text-align: center;
-    }
-footer a {
-  font-size: 16px;
-  padding-left: 5px;
-  padding-right: 5px;
+footer {
+  color: white;
 }
 
-footer a:hover {
-  color: #0088A9;
+footer p a {
+  color:white;
+  text-decoration: none;
+  transition: all 0.3s ease 0s;
+}
+
+footer p a:hover {
+  color: #0088A9 !important;
 }
 
 .withDivider {
