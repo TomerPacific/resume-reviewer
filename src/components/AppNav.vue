@@ -12,11 +12,10 @@
         <b-nav-item to="/file">{{ language === HEBREW_LANGUAGE ? 'העלאת קורות חיים' : 'Upload Resume' }}</b-nav-item>
       </b-navbar-nav>
 
-      <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-form @submit="checkForm" action="" method="">
-          <i class="fas fa-user"></i><b-form-input class="mr-sm-2" :placeholder="language === HEBREW_LANGUAGE ? 'אימייל' : 'Email'" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"></b-form-input>
-          <b-form-input class="mr-sm-2" :placeholder="language === HEBREW_LANGUAGE ? 'סיסמא' : 'Password'" v-model="password"></b-form-input>
+        <b-nav-form action="" method="">
+          <b-form-input class="mr-sm-2" id="username" :state="checkForm" :placeholder="language === HEBREW_LANGUAGE ? 'אימייל' : 'Email'" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"></b-form-input>
+          <b-form-input class="mr-sm-2" id="password" :state="checkForm" :placeholder="language === HEBREW_LANGUAGE ? 'סיסמא' : 'Password'" v-model="password"></b-form-input>
           <b-button variant="outline-primary" class="my-2 my-sm-0" type="submit" :value="language === HEBREW_LANGUAGE ? 'הרשמה' : 'Sign Up'" id="signin_btn" @click="signin">{{ language === HEBREW_LANGUAGE ? 'הרשמה' : 'Sign Up' }}</b-button>
           <b-button variant="outline-success" class="my-2 my-sm-0" type="submit" :value="language === HEBREW_LANGUAGE ? 'התחברות' : 'Log In'" id="login_btn" @click="login">{{ language === HEBREW_LANGUAGE ? 'התחברות' : 'Log In' }} </b-button>
 
@@ -54,27 +53,6 @@ export default {
         that.password = '';
       });
     },
-    checkForm: function(e) {
-
-      let usernameInput = document.getElementById("username");
-      let passwordInput = document.getElementById("password");
-
-      usernameInput.classList.remove("missing_input");
-      passwordInput.classList.remove("missing_input");
-
-      if (this.username && this.password) {
-        return true;
-      }
-      
-      if (!this.username) {
-        usernameInput.classList.add("missing_input");
-      }
-      if (!this.password) {
-         passwordInput.classList.add("missing_input");
-      }
-
-      e.preventDefault();
-    },
     signin: function() {
       let that = this;
       firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
@@ -103,6 +81,13 @@ export default {
     language() {
       return this.$store.getters.getLanguage;
     },
+    checkForm() {
+
+      if (this.username && this.password) {
+        return true;
+      }
+       return false;
+    }
   }
 }
 
@@ -137,6 +122,9 @@ export default {
   transition: all 0.3s ease 0s;
 }
 
+  .missing_input {
+    border: 2px solid red;
+  }
 
 
 </style>
