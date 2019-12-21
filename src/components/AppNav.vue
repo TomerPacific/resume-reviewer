@@ -1,15 +1,15 @@
 <template>
   <header dir="ltr">
-    <b-navbar toggleable="lg" fill>
+    <b-navbar toggleable="lg">
     <b-navbar-brand>
       <img src="../assets/logo.png" id="logo">
     </b-navbar-brand>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item to="/">Home</b-nav-item>
-        <b-nav-item to="/about">About</b-nav-item>
-        <b-nav-item to="/file">Upload Resume</b-nav-item>
+        <b-nav-item to="/">{{ language === HEBREW_LANGUAGE ? 'דף בית' : 'Home' }}</b-nav-item>
+        <b-nav-item to="/about">{{ language === HEBREW_LANGUAGE ? 'אודות' : 'About' }}</b-nav-item>
+        <b-nav-item to="/file">{{ language === HEBREW_LANGUAGE ? 'העלאת קורות חיים' : 'Upload Resume' }}</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -112,6 +112,9 @@ export default {
     background-color: #24252A;
   }
 
+  header {
+    text-align: center;
+  }
   #logo {
     width: 50px;
     height: 50px;
