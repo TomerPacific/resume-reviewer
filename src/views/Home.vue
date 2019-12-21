@@ -5,7 +5,6 @@
       <p>Welcome To Resume Reviewer! <br>
         Your one-stop-shop for everything that you need to prepare yourself for a job interview<br>
       </p>
-      <br>
       <p>We do the following:</p>
     </div>
 
@@ -13,7 +12,6 @@
       <p>ברוכים הבאים ל-Resume Reviewer!<br>
         המקום שבו יש את כל מה שתצטרכו כדי להכין את עצמכם לראיון עבודה<br>
       </p>
-      <br>
       <p>השירותים שאנו נותנים הם:</p>
     </div>
 
@@ -80,8 +78,8 @@ export default {
   }
 
   #interview {
-    height: 35%;
-    width: 35%;
+    height: 45%;
+    width: 45%;
     float: left;
     border: 2px solid white;
   }
@@ -93,7 +91,6 @@ export default {
   #points {
     list-style-type: upper-roman;
     list-style-position: inside;
-    margin-top: 2%;
   }
 
   #points li::before {
@@ -102,7 +99,7 @@ export default {
 
   #points li {
     margin-bottom: 1%;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   #points li:hover {
