@@ -4,8 +4,8 @@
     <main>
       <router-view/>
     </main>
-      <b-navbar toggleable="lg" fixed="bottom" dir="ltr">
-        <b-navbar-nav align="center">
+      <b-navbar fixed="bottom" dir="ltr">
+        <b-navbar-nav>
           <b-nav-text>Copyright &#9400; 2019</b-nav-text>
           <b-nav-item href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</b-nav-item>
           <b-nav-item class="withDivider" @click="changeLanguage(HEBREW_LANGUAGE)">{{ language === HEBREW_LANGUAGE ? 'עברית' : 'Hebrew' }}</b-nav-item>
