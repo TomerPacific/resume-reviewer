@@ -4,21 +4,14 @@
     <main>
       <router-view/>
     </main>
-    <footer v-if="language === ENGLISH_LANGUAGE">
-       <p> Copyright &#9400; 2019 <a href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</a></p>
-        <p>
-          <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)">Hebrew</a>
-          <a href="#" class="withDivider" @click="changeLanguage(ENGLISH_LANGUAGE)">English</a>
-        </p>
-    </footer>
-
-    <footer v-if="language === HEBREW_LANGUAGE">
-       <p> Copyright &#9400; 2019 <a href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</a></p>
-        <p>
-          <a href="#" class="withDivider" @click="changeLanguage(ENGLISH_LANGUAGE)">אנגלית </a>
-          <a href="#" @click="changeLanguage(HEBREW_LANGUAGE)"> עברית</a>
-        </p>
-    </footer>
+      <b-navbar fixed="bottom" dir="ltr">
+        <b-navbar-nav>
+          <b-nav-text>Copyright &#9400; 2019</b-nav-text>
+          <b-nav-item href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</b-nav-item>
+          <b-nav-item class="withDivider" @click="changeLanguage(HEBREW_LANGUAGE)">{{ language === HEBREW_LANGUAGE ? 'עברית' : 'Hebrew' }}</b-nav-item>
+          <b-nav-item class="withDivider" @click="changeLanguage(ENGLISH_LANGUAGE)">{{ language === HEBREW_LANGUAGE ? 'אנגלית' : 'English' }}</b-nav-item>
+        </b-navbar-nav>
+      </b-navbar>
   </div>
 
 </template>
@@ -67,23 +60,18 @@ html, body {
   text-align: center;
 }
 
-footer{
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 50px;
-        color: white;
-        text-align: center;
-    }
-footer a {
-  font-size: 16px;
-  padding-left: 5px;
-  padding-right: 5px;
+.navbar-text {
+  color: white !important;
 }
 
-footer a:hover {
-  color: #0088A9;
+.nav-link a {
+  color:white;
+  text-decoration: none;
+  transition: all 0.3s ease 0s;
+}
+
+.nav-link:hover {
+  color: #0088A9 !important;
 }
 
 .withDivider {

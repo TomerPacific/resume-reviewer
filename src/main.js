@@ -4,12 +4,20 @@ import firebase from 'firebase'
 import router from './router'
 import Vuex from 'vuex';
 import { store } from './store';
-import '@fortawesome/fontawesome-free/css/all.css'
-import '@fortawesome/fontawesome-free/js/all.js'
+
+//Font Awesome
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/js/all.js';
+
+//Bootstrap Vue
+import BootstrapVue from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
 Vue.use(Vuex);
+Vue.use(BootstrapVue);
 
 let app = '';
 

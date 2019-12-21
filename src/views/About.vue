@@ -51,8 +51,8 @@ export default {
 
   #about_picture {
     margin-top: 2%;
-    width: 25%;
-    height: 25%;
+    width: 30%;
+    height: 30%;
     border: 2px solid white;
   }
 

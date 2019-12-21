@@ -3,7 +3,7 @@
         <h1 v-if="language === ENGLISH_LANGUAGE">Upload Your Resume</h1>
         <h1 v-if="language === HEBREW_LANGUAGE">העלאת קורות חיים</h1>
         <div id="explanation">
-            <p v-if="language === ENGLISH_LANGUAGE">In order to start the reviewing process, it is needed to submit your resume.<br>
+            <p dir="ltr" v-if="language === ENGLISH_LANGUAGE">In order to start the reviewing process, it is needed to submit your resume.<br>
                We accept <strong>PDF</strong> files or Word documents (<strong>.doc, .docx</strong>).
             </p>
             <p v-if="language === HEBREW_LANGUAGE">כדי להתחיל את תהליך הביקורת, אנא הגישו את קורות החיים שלכם<br>
