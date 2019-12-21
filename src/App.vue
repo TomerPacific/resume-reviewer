@@ -5,9 +5,11 @@
       <router-view/>
     </main>
       <b-navbar toggleable="lg" fixed="bottom" dir="ltr">
-        <b-navbar-nav>
+        <b-navbar-nav align="center">
           <b-nav-text>Copyright &#9400; 2019</b-nav-text>
           <b-nav-item href="mailto:resume.reviewer.il@gmail.com">resume-reviewer</b-nav-item>
+          <b-nav-item class="withDivider" @click="changeLanguage(HEBREW_LANGUAGE)">{{ language === HEBREW_LANGUAGE ? 'עברית' : 'Hebrew' }}</b-nav-item>
+          <b-nav-item class="withDivider" @click="changeLanguage(ENGLISH_LANGUAGE)">{{ language === HEBREW_LANGUAGE ? 'אנגלית' : 'English' }}</b-nav-item>
         </b-navbar-nav>
       </b-navbar>
   </div>
