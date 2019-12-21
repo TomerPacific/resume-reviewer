@@ -54,6 +54,11 @@ export default {
       });
     },
     signin: function() {
+
+      if (!this.checkForm) {
+        return;
+      }
+
       let that = this;
       firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
       .then(function(user) {
@@ -64,6 +69,11 @@ export default {
       })
     },
     login: function() {
+
+      if (!this.checkForm) {
+        return;
+      }
+
       let that = this;
       firebase.auth().signInWithEmailAndPassword(this.username, this.password)
       .then(function(user) {
