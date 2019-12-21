@@ -12,13 +12,18 @@
         <b-nav-item to="/file">{{ language === HEBREW_LANGUAGE ? 'העלאת קורות חיים' : 'Upload Resume' }}</b-nav-item>
       </b-navbar-nav>
 
-      <b-navbar-nav class="ml-auto">
+      <b-navbar-nav class="ml-auto" v-if="!isUserLoggedIn">
         <b-nav-form action="" method="">
           <b-form-input class="mr-sm-2" id="username" :state="checkForm" :placeholder="language === HEBREW_LANGUAGE ? 'אימייל' : 'Email'" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"></b-form-input>
           <b-form-input class="mr-sm-2" id="password" :state="checkForm" :placeholder="language === HEBREW_LANGUAGE ? 'סיסמא' : 'Password'" v-model="password"></b-form-input>
           <b-button variant="outline-primary" class="my-2 my-sm-0" type="submit" :value="language === HEBREW_LANGUAGE ? 'הרשמה' : 'Sign Up'" id="signin_btn" @click="signin">{{ language === HEBREW_LANGUAGE ? 'הרשמה' : 'Sign Up' }}</b-button>
           <b-button variant="outline-success" class="my-2 my-sm-0" type="submit" :value="language === HEBREW_LANGUAGE ? 'התחברות' : 'Log In'" id="login_btn" @click="login">{{ language === HEBREW_LANGUAGE ? 'התחברות' : 'Log In' }} </b-button>
+        </b-nav-form>
+      </b-navbar-nav>
 
+       <b-navbar-nav class="ml-auto" v-else>
+        <b-nav-form action="" method="">
+           <b-button variant="outline-danger" id="logout_btn" class="my-2 my-sm-0" type="submit" :value="language === HEBREW_LANGUAGE ? 'התנתקות' : 'Logout'" @click="logoutUser">{{ language === HEBREW_LANGUAGE ? 'התנתקות' : 'Logout' }} </b-button>
         </b-nav-form>
       </b-navbar-nav>
     </b-collapse>
