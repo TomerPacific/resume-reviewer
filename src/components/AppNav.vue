@@ -54,8 +54,8 @@ export default {
       firebase.auth().signOut()
       .then(function() {
         that.$store.dispatch('logoutUser');
-        that.username = '';
-        that.password = '';
+        that.username = null
+        that.password = null;
       });
     },
     signin: function() {
@@ -97,7 +97,11 @@ export default {
       return this.$store.getters.getLanguage;
     },
     checkForm() {
-
+      if ((this.username === null && this.password === null) || 
+          (this.username === '' && this.password === ''))
+       {
+        return null;
+      }
       if (this.username && this.password) {
         return true;
       }
