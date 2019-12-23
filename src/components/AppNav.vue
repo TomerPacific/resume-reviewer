@@ -14,8 +14,8 @@
 
       <b-navbar-nav class="ml-auto" v-if="!isUserLoggedIn">
         <b-nav-form action="" method="">
-          <b-form-input class="mr-sm-2" id="username" :state="checkForm" :placeholder="language === HEBREW_LANGUAGE ? 'אימייל' : 'Email'" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"></b-form-input>
-          <b-form-input class="mr-sm-2" id="password" :state="checkForm" :placeholder="language === HEBREW_LANGUAGE ? 'סיסמא' : 'Password'" v-model="password"></b-form-input>
+          <b-form-input class="mr-sm-2" lazy id="username" :state="checkForm" :placeholder="language === HEBREW_LANGUAGE ? 'אימייל' : 'Email'" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"></b-form-input>
+          <b-form-input class="mr-sm-2" lazy id="password" :state="checkForm" :placeholder="language === HEBREW_LANGUAGE ? 'סיסמא' : 'Password'" v-model="password"></b-form-input>
           <b-button variant="outline-primary" class="my-2 my-sm-0" type="submit" :value="language === HEBREW_LANGUAGE ? 'הרשמה' : 'Sign Up'" id="signin_btn" @click="signin">{{ language === HEBREW_LANGUAGE ? 'הרשמה' : 'Sign Up' }}</b-button>
           <b-button variant="outline-success" class="my-2 my-sm-0" type="submit" :value="language === HEBREW_LANGUAGE ? 'התחברות' : 'Log In'" id="login_btn" @click="login">{{ language === HEBREW_LANGUAGE ? 'התחברות' : 'Log In' }} </b-button>
         </b-nav-form>
@@ -54,8 +54,8 @@ export default {
       firebase.auth().signOut()
       .then(function() {
         that.$store.dispatch('logoutUser');
-        that.username = '';
-        that.password = '';
+        that.username = null;
+        that.password = null;
       });
     },
     signin: function() {
@@ -70,7 +70,8 @@ export default {
         that.$store.dispatch('loginUser', {currentUser: user});
       },
       function(err) {
-        console.log("Error when creating user " + err.message);
+        alert(err.message);
+        that.resetFormFields();
       })
     },
     login: function() {
@@ -85,8 +86,17 @@ export default {
         that.$store.dispatch('loginUser', {currentUser: user});
       },
       function(err) {
-        console.log("Error when user logged in " + err.message);
+        alert(err.message);
+        that.resetFormFields();
       });
+    },
+    resetFormFields: function() {
+      let usernameInput = document.getElementById('username');
+      let passwordInput = document.getElementById('password');
+      usernameInput.value = '';
+      passwordInput.value = '';
+      this.username = null;
+      this.password = null;
     }
   },
   computed: {
@@ -97,7 +107,10 @@ export default {
       return this.$store.getters.getLanguage;
     },
     checkForm() {
-
+      if ((this.username === null && this.password === null) ||
+          (this.username === '' && this.password === '')) {
+            return null;
+          }
       if (this.username && this.password) {
         return true;
       }
@@ -137,9 +150,8 @@ export default {
   transition: all 0.3s ease 0s;
 }
 
-  .missing_input {
-    border: 2px solid red;
-  }
-
+.missing_input {
+  border: 2px solid red;
+}
 
 </style>
