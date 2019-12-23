@@ -71,12 +71,7 @@ export default {
       },
       function(err) {
         alert(err.message);
-        let usernameInput = document.getElementById('username');
-        let passwordInput = document.getElementById('password');
-        usernameInput.value = '';
-        passwordInput.value = '';
-        that.username = null;
-        that.password = null;
+        that.resetFormFields();
       })
     },
     login: function() {
@@ -91,8 +86,17 @@ export default {
         that.$store.dispatch('loginUser', {currentUser: user});
       },
       function(err) {
-        console.log("Error when user logged in " + err.message);
+        alert(err.message);
+        that.resetFormFields();
       });
+    },
+    resetFormFields: function() {
+      let usernameInput = document.getElementById('username');
+      let passwordInput = document.getElementById('password');
+      usernameInput.value = '';
+      passwordInput.value = '';
+      this.username = null;
+      this.password = null;
     }
   },
   computed: {
