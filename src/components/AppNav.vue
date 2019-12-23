@@ -70,7 +70,13 @@ export default {
         that.$store.dispatch('loginUser', {currentUser: user});
       },
       function(err) {
-        console.log("Error when creating user " + err.message);
+        alert(err.message);
+        let usernameInput = document.getElementById('username');
+        let passwordInput = document.getElementById('password');
+        usernameInput.value = '';
+        passwordInput.value = '';
+        that.username = null;
+        that.password = null;
       })
     },
     login: function() {
