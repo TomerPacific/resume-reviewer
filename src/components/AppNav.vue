@@ -154,4 +154,8 @@ export default {
   border: 2px solid red;
 }
 
+.navbar-toggler > .navbar-toggler-icon {
+  background-color: white; 
+}
+
 </style>
