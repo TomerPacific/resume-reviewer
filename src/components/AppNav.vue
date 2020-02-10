@@ -14,8 +14,8 @@
 
       <b-navbar-nav class="ml-auto" v-if="!isUserLoggedIn">
         <b-nav-form action="" method="">
-          <b-form-input class="mr-sm-2" id="username" :placeholder="language === HEBREW_LANGUAGE ? 'אימייל' : 'Email'" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" v-model="username"></b-form-input>
-          <b-form-input class="mr-sm-2" id="password" :placeholder="language === HEBREW_LANGUAGE ? 'סיסמא' : 'Password'" v-model="password"></b-form-input>
+          <b-form-input class="mr-sm-2" id="username" :placeholder="language === HEBREW_LANGUAGE ? 'אימייל' : 'Email'" v-model="username" type="email"></b-form-input>
+          <b-form-input class="mr-sm-2" id="password" :placeholder="language === HEBREW_LANGUAGE ? 'סיסמא' : 'Password'" v-model="password" type="password"></b-form-input>
           <b-button variant="outline-primary" class="my-2 my-sm-0" type="submit" :value="language === HEBREW_LANGUAGE ? 'הרשמה' : 'Sign Up'" id="signin_btn" @click="signin">{{ language === HEBREW_LANGUAGE ? 'הרשמה' : 'Sign Up' }}</b-button>
           <b-button variant="outline-success" class="my-2 my-sm-0" type="submit" :value="language === HEBREW_LANGUAGE ? 'התחברות' : 'Log In'" id="login_btn" @click="login">{{ language === HEBREW_LANGUAGE ? 'התחברות' : 'Log In' }} </b-button>
         </b-nav-form>
@@ -60,6 +60,16 @@ export default {
     },
     signin: function() {
 
+      if (!this.validateEmail()) {
+        alert("Email is not valid");
+        return;
+      }
+
+      if (!this.validatePassword()) {
+        alert("Password is not valid");
+        return;
+      }
+
       let that = this;
       firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
       .then(function(user) {
@@ -71,6 +81,16 @@ export default {
       })
     },
     login: function() {
+
+      if (!this.validateEmail()) {
+        alert("Email is not valid");
+        return;
+      }
+
+      if (!this.validatePassword()) {
+        alert("Password is not valid");
+        return;
+      }
 
       let that = this;
       firebase.auth().signInWithEmailAndPassword(this.username, this.password)
@@ -91,8 +111,16 @@ export default {
       this.password = null;
     },
     validatePassword: function() {
-      return (this.password !== '' && this.password !== undefined && this.password.length > 6);
-    }
+      return (this.password !== '' && 
+              this.password !== undefined && 
+              this.password !== null && 
+              this.password.length > Constants.MINIMUM_PASSWORD_LENGTH);
+    },
+    validateEmail: function() {
+      let emailPattern=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      let isEmailValid = emailPattern.exec(this.username);
+      return isEmailValid;
+    },
   },
   computed: {
     isUserLoggedIn() {
