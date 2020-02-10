@@ -35,6 +35,7 @@
 
 import firebase from 'firebase';
 import Constants from '../constants.js';
+import constants from '../constants.js';
 
 export default {
   name: 'AppNav',
@@ -61,12 +62,12 @@ export default {
     signin: function() {
 
       if (!this.validateEmail()) {
-        alert("Email is not valid");
+        alert(constants.errors.INVALID_EMAIL);
         return;
       }
 
       if (!this.validatePassword()) {
-        alert("Password is not valid");
+        alert(constants.errors.INVALID_PASSWORD);
         return;
       }
 
@@ -83,12 +84,12 @@ export default {
     login: function() {
 
       if (!this.validateEmail()) {
-        alert("Email is not valid");
+        alert(constants.errors.INVALID_EMAIL);
         return;
       }
 
       if (!this.validatePassword()) {
-        alert("Password is not valid");
+        alert(constants.errors.INVALID_PASSWORD);
         return;
       }
 
