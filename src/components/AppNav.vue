@@ -35,7 +35,7 @@
 
 import firebase from 'firebase';
 import Constants from '../constants.js';
-import constants from '../constants.js';
+import Utils from '../utils.js';
 
 export default {
   name: 'AppNav',
@@ -62,12 +62,12 @@ export default {
     signin: function() {
 
       if (!this.validateEmail()) {
-        alert(constants.errors.INVALID_EMAIL);
+        alert(Constants.errors.INVALID_EMAIL);
         return;
       }
 
       if (!this.validatePassword()) {
-        alert(constants.errors.INVALID_PASSWORD);
+        alert(Constants.errors.INVALID_PASSWORD);
         return;
       }
 
@@ -84,12 +84,12 @@ export default {
     login: function() {
 
       if (!this.validateEmail()) {
-        alert(constants.errors.INVALID_EMAIL);
+        alert(Constants.errors.INVALID_EMAIL);
         return;
       }
 
       if (!this.validatePassword()) {
-        alert(constants.errors.INVALID_PASSWORD);
+        alert(Constants.errors.INVALID_PASSWORD);
         return;
       }
 
@@ -99,7 +99,7 @@ export default {
         that.$store.dispatch('loginUser', {currentUser: user});
       },
       function(err) {
-        alert(err.message);
+        alert(Utils.convertLoginError(err, that.language));
         that.resetFormFields();
       });
     },
