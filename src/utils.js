@@ -25,5 +25,21 @@ export default {
                 errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'You have uploaded a wrong file type' : 'ניסיתם להעלות קובץ מטיפוס לא נתמך';
             }
             return errorMessage;
+        },
+        convertLoginError(error, language) {
+            let errorMessage = '';
+            if (error.code === 'auth/user-not-found') {
+                errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'User not found' : 'משתמש לא נמצא';
+            } else if (error.code === 'auth/invalid-email') {
+                errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'Invalid email' : 'מייל לא תקין';
+            } else if (error.code === 'auth/email-already-exists') {
+                errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'Email already exists' : 'מייל זה כבר קיים';
+            } else if (error.code === 'auth/invalid-password') {
+                errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'Invalid password' : 'סיסמא לא תקינה';
+            } else if (error.code === 'auth/invalid-argument') {
+                errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'Something that was sent was invalid' : 'מה שנשלח לא היה תקין';
+            }
+
+            return errorMessage;
         }
 }
