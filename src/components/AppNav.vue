@@ -43,6 +43,10 @@ export default {
     this.HEBREW_LANGUAGE = Constants.HEBREW_LANGUAGE;
     this.ENGLISH_LANGUAGE = Constants.ENGLISH_LANGUAGE;
   },
+  mounted: function() {
+    this.userNameInput =  document.getElementById('username');
+    this.passwordInput = document.getElementById('password');
+  },
   data: function() {
     return {
         username: null,
@@ -65,11 +69,8 @@ export default {
         return;
       }
 
-      let userNameInput = document.getElementById('username');
-      let passwordInput = document.getElementById('password');
-
-      Utils.removeClassFromElement(userNameInput, 'invalid_input');
-      Utils.removeClassFromElement(passwordInput, 'invalid_input');
+      Utils.removeClassFromElement(this.userNameInput, 'invalid_input');
+      Utils.removeClassFromElement(this.passwordInput, 'invalid_input');
 
       let that = this;
       firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
@@ -87,11 +88,8 @@ export default {
         return;
       }
 
-      let userNameInput = document.getElementById('username');
-      let passwordInput = document.getElementById('password');
-
-      Utils.removeClassFromElement(userNameInput, 'invalid_input');
-      Utils.removeClassFromElement(passwordInput, 'invalid_input');
+      Utils.removeClassFromElement(this.userNameInput, 'invalid_input');
+      Utils.removeClassFromElement(this.passwordInput, 'invalid_input');
 
       let that = this;
       firebase.auth().signInWithEmailAndPassword(this.username, this.password)
@@ -104,10 +102,8 @@ export default {
       });
     },
     resetFormFields: function() {
-      let usernameInput = document.getElementById('username');
-      let passwordInput = document.getElementById('password');
-      usernameInput.value = '';
-      passwordInput.value = '';
+      this.userNameInput.value = '';
+      this.passwordInput.value = '';
       this.username = null;
       this.password = null;
     },
