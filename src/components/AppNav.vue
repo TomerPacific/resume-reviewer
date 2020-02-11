@@ -60,16 +60,32 @@ export default {
       });
     },
     signin: function() {
+      let userNameInput = document.getElementById('username');
+      let passwordInput = document.getElementById('password');
 
       if (!this.validateEmail()) {
         alert(Constants.errors.INVALID_EMAIL);
+        if (!userNameInput.classList.contains('invalid-input')) {
+          userNameInput.classList.add('invalid_input');
+        }
         return;
       }
 
       if (!this.validatePassword()) {
         alert(Constants.errors.INVALID_PASSWORD);
+        if (userNameInput.classList.contains('invalid-input')) {
+          userNameInput.classList.remove('invalid_input');
+        }
+        if (!passwordInput.classList.contains('invalid-input')) {
+           passwordInput.classList.add('invalid_input');
+        }
+       
         return;
       }
+
+
+      userNameInput.classList.remove('invalid_input');
+      passwordInput.classList.remove('invalid_input');
 
       let that = this;
       firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
@@ -82,16 +98,31 @@ export default {
       })
     },
     login: function() {
+      let userNameInput = document.getElementById('username');
+      let passwordInput = document.getElementById('password');
 
       if (!this.validateEmail()) {
         alert(Constants.errors.INVALID_EMAIL);
+        if (!userNameInput.classList.contains('invalid-input')) {
+          userNameInput.classList.add('invalid_input');
+        }
         return;
       }
 
       if (!this.validatePassword()) {
         alert(Constants.errors.INVALID_PASSWORD);
+        if (userNameInput.classList.contains('invalid-input')) {
+          userNameInput.classList.remove('invalid_input');
+        }
+        if (!passwordInput.classList.contains('invalid-input')) {
+           passwordInput.classList.add('invalid_input');
+        }
+       
         return;
       }
+
+      userNameInput.classList.remove('invalid_input');
+      passwordInput.classList.remove('invalid_input');
 
       let that = this;
       firebase.auth().signInWithEmailAndPassword(this.username, this.password)
@@ -138,34 +169,34 @@ export default {
 
 <style>
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    background-color: #24252A;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #24252A;
+}
 
-  header {
-    text-align: center;
-  }
-  #logo {
-    width: 50px;
-    height: 50px;
-  }
+header {
+  text-align: center;
+}
+#logo {
+  width: 50px;
+  height: 50px;
+}
 
-  .nav-link {
-    color:white !important;
-  }
+.nav-link {
+  color:white !important;
+}
 
-  .nav-link:hover {
-     color: #0088A9 !important;
-  }
+.nav-link:hover {
+    color: #0088A9 !important;
+}
 .nav-link {
   transition: all 0.3s ease 0s;
 }
 
-.missing_input {
-  border: 2px solid red;
+.invalid_input {
+  border: 2px solid red !important;
 }
 
 .navbar-toggler > .navbar-toggler-icon {
