@@ -43,6 +43,10 @@ export default {
     this.HEBREW_LANGUAGE = Constants.HEBREW_LANGUAGE;
     this.ENGLISH_LANGUAGE = Constants.ENGLISH_LANGUAGE;
   },
+  mounted: function() {
+    this.userNameInput =  document.getElementById('username');
+    this.passwordInput = document.getElementById('password');
+  },
   data: function() {
     return {
         username: null,
@@ -61,15 +65,12 @@ export default {
     },
     signin: function() {
 
-      if (!this.validateEmail()) {
-        alert(Constants.errors.INVALID_EMAIL);
+      if (!Utils.areInputFieldsValid()) {
         return;
       }
 
-      if (!this.validatePassword()) {
-        alert(Constants.errors.INVALID_PASSWORD);
-        return;
-      }
+      Utils.removeClassFromElement(this.userNameInput, 'invalid_input');
+      Utils.removeClassFromElement(this.passwordInput, 'invalid_input');
 
       let that = this;
       firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
@@ -83,15 +84,12 @@ export default {
     },
     login: function() {
 
-      if (!this.validateEmail()) {
-        alert(Constants.errors.INVALID_EMAIL);
+      if (!Utils.areInputFieldsValid()) {
         return;
       }
 
-      if (!this.validatePassword()) {
-        alert(Constants.errors.INVALID_PASSWORD);
-        return;
-      }
+      Utils.removeClassFromElement(this.userNameInput, 'invalid_input');
+      Utils.removeClassFromElement(this.passwordInput, 'invalid_input');
 
       let that = this;
       firebase.auth().signInWithEmailAndPassword(this.username, this.password)
@@ -104,23 +102,10 @@ export default {
       });
     },
     resetFormFields: function() {
-      let usernameInput = document.getElementById('username');
-      let passwordInput = document.getElementById('password');
-      usernameInput.value = '';
-      passwordInput.value = '';
+      this.userNameInput.value = '';
+      this.passwordInput.value = '';
       this.username = null;
       this.password = null;
-    },
-    validatePassword: function() {
-      return (this.password !== '' && 
-              this.password !== undefined && 
-              this.password !== null && 
-              this.password.length > Constants.MINIMUM_PASSWORD_LENGTH);
-    },
-    validateEmail: function() {
-      let emailPattern=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      let isEmailValid = emailPattern.exec(this.username);
-      return isEmailValid;
     },
   },
   computed: {
@@ -138,34 +123,34 @@ export default {
 
 <style>
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    background-color: #24252A;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #24252A;
+}
 
-  header {
-    text-align: center;
-  }
-  #logo {
-    width: 50px;
-    height: 50px;
-  }
+header {
+  text-align: center;
+}
+#logo {
+  width: 50px;
+  height: 50px;
+}
 
-  .nav-link {
-    color:white !important;
-  }
+.nav-link {
+  color:white !important;
+}
 
-  .nav-link:hover {
-     color: #0088A9 !important;
-  }
+.nav-link:hover {
+    color: #0088A9 !important;
+}
 .nav-link {
   transition: all 0.3s ease 0s;
 }
 
-.missing_input {
-  border: 2px solid red;
+.invalid_input {
+  border: 2px solid red !important;
 }
 
 .navbar-toggler > .navbar-toggler-icon {

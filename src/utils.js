@@ -41,5 +41,46 @@ export default {
             }
 
             return errorMessage;
+        },
+        areInputFieldsValid() {
+            let userNameInput = document.getElementById('username');
+            let passwordInput = document.getElementById('password');
+
+            if (!this.validateEmail(userNameInput.value)) {
+                alert(Constants.errors.INVALID_EMAIL);
+                if (!userNameInput.classList.contains('invalid-input')) {
+                    userNameInput.classList.add('invalid_input');
+                }
+                return false;
+            }
+
+            if (!this.validatePassword(passwordInput.value)) {
+                alert(Constants.errors.INVALID_PASSWORD);
+                if (userNameInput.classList.contains('invalid-input')) {
+                    userNameInput.classList.remove('invalid_input');
+                }
+                if (!passwordInput.classList.contains('invalid-input')) {
+                    passwordInput.classList.add('invalid_input');
+                }
+
+                return false;
+            }
+
+            return true;
+        },
+        validatePassword: function(password) {
+            return (password !== '' && 
+                    password !== undefined && 
+                    password !== null && 
+                    password.length > Constants.MINIMUM_PASSWORD_LENGTH);
+          },
+        validateEmail: function(email) {
+            let emailPattern=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            return emailPattern.exec(email);
+        },
+        removeClassFromElement: function(element, className) {
+            if (element.classList.contains(className)) {
+                element.classList.remove(className);
+            }
         }
 }
