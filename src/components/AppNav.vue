@@ -60,32 +60,16 @@ export default {
       });
     },
     signin: function() {
+
+      if (!Utils.areInputFieldsValid()) {
+        return;
+      }
+
       let userNameInput = document.getElementById('username');
       let passwordInput = document.getElementById('password');
 
-      if (!this.validateEmail()) {
-        alert(Constants.errors.INVALID_EMAIL);
-        if (!userNameInput.classList.contains('invalid-input')) {
-          userNameInput.classList.add('invalid_input');
-        }
-        return;
-      }
-
-      if (!this.validatePassword()) {
-        alert(Constants.errors.INVALID_PASSWORD);
-        if (userNameInput.classList.contains('invalid-input')) {
-          userNameInput.classList.remove('invalid_input');
-        }
-        if (!passwordInput.classList.contains('invalid-input')) {
-           passwordInput.classList.add('invalid_input');
-        }
-       
-        return;
-      }
-
-
-      userNameInput.classList.remove('invalid_input');
-      passwordInput.classList.remove('invalid_input');
+      Utils.removeClassFromElement(userNameInput, 'invalid_input');
+      Utils.removeClassFromElement(passwordInput, 'invalid_input');
 
       let that = this;
       firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
@@ -98,31 +82,16 @@ export default {
       })
     },
     login: function() {
+
+      if (!Utils.areInputFieldsValid()) {
+        return;
+      }
+
       let userNameInput = document.getElementById('username');
       let passwordInput = document.getElementById('password');
 
-      if (!this.validateEmail()) {
-        alert(Constants.errors.INVALID_EMAIL);
-        if (!userNameInput.classList.contains('invalid-input')) {
-          userNameInput.classList.add('invalid_input');
-        }
-        return;
-      }
-
-      if (!this.validatePassword()) {
-        alert(Constants.errors.INVALID_PASSWORD);
-        if (userNameInput.classList.contains('invalid-input')) {
-          userNameInput.classList.remove('invalid_input');
-        }
-        if (!passwordInput.classList.contains('invalid-input')) {
-           passwordInput.classList.add('invalid_input');
-        }
-       
-        return;
-      }
-
-      userNameInput.classList.remove('invalid_input');
-      passwordInput.classList.remove('invalid_input');
+      Utils.removeClassFromElement(userNameInput, 'invalid_input');
+      Utils.removeClassFromElement(passwordInput, 'invalid_input');
 
       let that = this;
       firebase.auth().signInWithEmailAndPassword(this.username, this.password)
@@ -141,17 +110,6 @@ export default {
       passwordInput.value = '';
       this.username = null;
       this.password = null;
-    },
-    validatePassword: function() {
-      return (this.password !== '' && 
-              this.password !== undefined && 
-              this.password !== null && 
-              this.password.length > Constants.MINIMUM_PASSWORD_LENGTH);
-    },
-    validateEmail: function() {
-      let emailPattern=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      let isEmailValid = emailPattern.exec(this.username);
-      return isEmailValid;
     },
   },
   computed: {
