@@ -10,6 +10,7 @@
         Use our knowledge and expertise to gurantee that your next job interview will be the best that you had.
         <br><br><a href="mailto:resume.reviewer.il@gmail.com" title="Email">&rarr; Contact Us &larr;</a>  
       </p>
+      
       <p v-if="language === HEBREW_LANGUAGE">
         אנחנו קבוצה של מפתחים עם ניסיון רב בתעשייה. עבדנו תחת חברות מכל מיני סוגים ועברנו תהליכי גיוס רבים.<br>
         נתקלנו בתהליכים שהיו מוזרים, מעצבנים וקשים ולכל אחד מהם התכוננו בהתאם. <br>
