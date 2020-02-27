@@ -129,11 +129,12 @@ export default {
     }
 
     .form-group {
-        margin-top: 5%;
+         margin: auto;
+         text-align: center;
     }
 
-    #file {
-        margin: 1%;
+    input {
+        border: 2px solid white;
     }
 
     .success {
