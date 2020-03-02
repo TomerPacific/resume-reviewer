@@ -28,7 +28,8 @@ const firebaseConfigProd = {
     projectId: "resume-reviewer",
     storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET_PROD,
     messagingSenderId: process.env.VUE_APP_FIREBASE_SENDER_ID_PROD,
-    appId: process.env.VUE_APP_FIREBASE_APP_ID_PROD
+    appId: process.env.VUE_APP_FIREBASE_APP_ID_PROD,
+    measurementId: process.env.VUE_APP_FIREBASE_ANALYTICS_MEASUREMENT_ID
 };
 
 const firebaseConfigDev = {
@@ -38,7 +39,8 @@ const firebaseConfigDev = {
   projectId: "resume-reviewer-dev",
   storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET_DEV,
   messagingSenderId: process.env.VUE_APP_FIREBASE_SENDER_ID_DEV,
-  appId: process.env.VUE_APP_FIREBASE_APP_ID_DEV
+  appId: process.env.VUE_APP_FIREBASE_APP_ID_DEV,
+  measurementId: process.env.VUE_APP_FIREBASE_ANALYTICS_MEASUREMENT_ID
 };
 
 const firebaseConfig = process.env.NODE_ENV === 'production' ? firebaseConfigProd : firebaseConfigDev;
