@@ -44,6 +44,7 @@ const firebaseConfigDev = {
 const firebaseConfig = process.env.NODE_ENV === 'production' ? firebaseConfigProd : firebaseConfigDev;
 
 firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 firebase.auth().onAuthStateChanged((user) => {
   if (!app) {
