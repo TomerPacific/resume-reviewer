@@ -79,6 +79,7 @@ export default {
             }, () => {
                 this.uploadValue = 100;
                 this.isUploading = false;
+                this.$analytics.logEvent('UserAction', 'FileUpload', 'FileUpload', 3);
             });
 
         },
