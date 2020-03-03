@@ -48,6 +48,8 @@ const firebaseConfig = process.env.NODE_ENV === 'production' ? firebaseConfigPro
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+Vue.prototype.$analytics = firebase.analytics();
+
 firebase.auth().onAuthStateChanged((user) => {
   if (!app) {
     app = new Vue({

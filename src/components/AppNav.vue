@@ -76,6 +76,7 @@ export default {
       firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
       .then(function(user) {
         that.$store.dispatch('loginUser', {currentUser: user});
+        that.$analytics.logEvent('UserAction', 'Signin', 'Signin', 1);
       },
       function(err) {
         alert(err.message);
@@ -95,6 +96,7 @@ export default {
       firebase.auth().signInWithEmailAndPassword(this.username, this.password)
       .then(function(user) {
         that.$store.dispatch('loginUser', {currentUser: user});
+        that.$analytics.logEvent('UserAction', 'Login', 'Login', 2);
       },
       function(err) {
         alert(Utils.convertLoginError(err, that.language));
