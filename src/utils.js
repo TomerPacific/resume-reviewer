@@ -38,6 +38,8 @@ export default {
                 errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'Invalid password' : 'סיסמא לא תקינה';
             } else if (error.code === 'auth/invalid-argument') {
                 errorMessage = language === Constants.ENGLISH_LANGUAGE ? 'Something that was sent was invalid' : 'מה שנשלח לא היה תקין';
+            } else if (error.code === 'auth/wrong-password') {
+                errorMessage = language === Constants.ENGLISH_LANGUAGE ? error.message : 'הסיסמה לא תקינה/למשתמש אין סיסמה';
             }
 
             return errorMessage;
