@@ -16,6 +16,7 @@
     "glob-parent": "^6.0.0",
     "normalize-url": "^4.5.1",
     "postcss": "^8.3.2",
+    "set-value": "^4.0.1",
     "url-parse": "^1.5.3",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
