@@ -1,24 +1,7 @@
 # Resume Reviewer
 
-## Project setup
-```
-yarn install
-```
+A project written in Vue3 that uses Firebase as a backend to help register users and store uploaded files.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+The frontend also supports two languages.
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![resumer-reviewer-screenshot]('(https://github.com/TomerPacific/resume-reviewer/blob/master/rr?raw=true')
